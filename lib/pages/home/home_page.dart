@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
+import 'package:mosya/pages/home/home_screen.dart';
+import 'package:mosya/pages/home/profile_screen.dart';
 import 'package:mosya/utils/customcolor.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +17,8 @@ class _HomePageState extends State<HomePage> {
   Box<User>? userBox;
   Box<Car>? carBox;
   Box<CarImage>? carImageBox;
+
+  int selectedIndex = 0;
 
   void insertCar() {
     final query = carBox?.query().build();
@@ -37,6 +41,12 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   void initState() {
     openStore().then((Store store) {
@@ -53,8 +63,12 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
+  final _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+
+  static final screenOpstions = [
+    const HomeScreen(),
+    const ProfileScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -75,32 +89,21 @@ class _HomePageState extends State<HomePage> {
         elevation: 0.0,
         backgroundColor: CustomColor.black50,
       ),
-      body: RefreshIndicator(
-        key: _refreshIndicatorKey,
-        onRefresh: () async {
-          await Future.delayed(const Duration(seconds: 1));
-          return;
-        },
-        child: SingleChildScrollView(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            // ListView.builder(
-            //   itemCount: carBox!.count(),
-            //   itemBuilder: (BuildContext context, int index) {
-            //     final Car? car = carBox?.get(index);
-            //     return ListTile(
-            //       title: Text('${car?.carMerk}'),
-            //       subtitle: Text('${car?.carModel}'),
-            //       trailing: Text('${car?.carYear}'),
-            //       onTap: () {
-            //         Navigator.pushNamed(context, '/detail', arguments: car);
-            //       },
-            //     );
-            //   },
-            // ),
-          ],
-        )),
+      body: screenOpstions[selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: selectedIndex,
+        selectedItemColor: CustomColor.orange500,
+        onTap: onItemTapped,
       ),
     );
   }
