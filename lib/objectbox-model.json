@@ -1,0 +1,176 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2224921072876291687",
+      "lastPropertyId": "12:5694907018011456665",
+      "name": "User",
+      "properties": [
+        {
+          "id": "7:6419662327493668389",
+          "name": "userId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "8:1309811587744613598",
+          "name": "userName",
+          "type": 9
+        },
+        {
+          "id": "9:7745694444733614953",
+          "name": "userEmail",
+          "type": 9
+        },
+        {
+          "id": "10:7769331950300218825",
+          "name": "userPhone",
+          "type": 9
+        },
+        {
+          "id": "11:1701624325466522002",
+          "name": "userPassword",
+          "type": 9
+        },
+        {
+          "id": "12:5694907018011456665",
+          "name": "userPicture",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3489657266866686942",
+      "lastPropertyId": "26:5615302390500950611",
+      "name": "Car",
+      "properties": [
+        {
+          "id": "14:1516793578926445089",
+          "name": "carId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "15:2840556848304467255",
+          "name": "carMerk",
+          "type": 9
+        },
+        {
+          "id": "16:5418695692770189289",
+          "name": "carModel",
+          "type": 9
+        },
+        {
+          "id": "17:3725846933351436665",
+          "name": "carColor",
+          "type": 9
+        },
+        {
+          "id": "18:7199701360235582013",
+          "name": "carYear",
+          "type": 9
+        },
+        {
+          "id": "19:2796434960403972020",
+          "name": "carKilomoter",
+          "type": 6
+        },
+        {
+          "id": "20:1972400264640492557",
+          "name": "carFuel",
+          "type": 9
+        },
+        {
+          "id": "21:1648326668963977277",
+          "name": "carPrice",
+          "type": 8
+        },
+        {
+          "id": "22:3841292708280295572",
+          "name": "carCondition",
+          "type": 9
+        },
+        {
+          "id": "23:3909088751211117797",
+          "name": "carDownPayment",
+          "type": 9
+        },
+        {
+          "id": "24:8118477694700598484",
+          "name": "carUnitCode",
+          "type": 9
+        },
+        {
+          "id": "25:212158060016563083",
+          "name": "carFlatNumber",
+          "type": 9
+        },
+        {
+          "id": "26:5615302390500950611",
+          "name": "carDesc",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:7138760474270620175",
+      "lastPropertyId": "3:1796531514329971311",
+      "name": "CarImage",
+      "flags": 2,
+      "properties": [
+        {
+          "id": "1:1949284953744044805",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7856552604690501072",
+          "name": "carId",
+          "type": 6
+        },
+        {
+          "id": "3:1796531514329971311",
+          "name": "picture",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "3:7138760474270620175",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    4440133288140661164,
+    6177125651460955653,
+    4791848364529822128,
+    2053928299080155459,
+    4605191901741331425,
+    2375375682124276521,
+    9152768924121620487,
+    2733196442954964860,
+    4030010991724973116,
+    7670678882126563510,
+    61950080304617006,
+    5829484930665141219,
+    8962280186919397177,
+    8060676905334196854,
+    8875992064605768544,
+    910122354658714668,
+    3237205819677756809,
+    4270299824964292171,
+    3406967608266904494
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
