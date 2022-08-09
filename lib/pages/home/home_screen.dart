@@ -12,14 +12,14 @@ final _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: RefreshIndicator(
-        key: _refreshIndicatorKey,
-        onRefresh: () async {
-          await Future.delayed(const Duration(seconds: 1));
-          return;
-        },
-        child: const SingleChildScrollView(
+    return RefreshIndicator(
+      key: _refreshIndicatorKey,
+      onRefresh: () async {
+        await Future.delayed(const Duration(seconds: 1));
+        return;
+      },
+      child: const SingleChildScrollView(
+        child: Center(
           child: Text(
             'Home',
             style: TextStyle(

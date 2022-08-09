@@ -20,12 +20,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return;
         },
         child: const SingleChildScrollView(
-          child: Text(
-            'Profile',
-            style: TextStyle(
-              fontSize: 24,
-              fontFamily: 'OpenSans',
-              fontWeight: FontWeight.bold,
+          child: Center(
+            child: Text(
+              'Profile',
+              style: TextStyle(
+                fontSize: 24,
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
