@@ -53,9 +53,11 @@ class _LoginPageState extends State<LoginPage> {
         saveData(result[0]);
       } else {
         Dialogs.buildDialog(
+          typeDialog: DialogType.warning,
           context: context,
           title: 'Perhatian',
           message: 'Email atau password salah',
+          confirmText: 'Mengerti',
         );
       }
     } else {

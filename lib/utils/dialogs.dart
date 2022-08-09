@@ -31,14 +31,14 @@ class Dialogs {
               actionsOverflowButtonSpacing: 0,
               contentPadding: const EdgeInsets.only(
                 top: 16,
-                bottom: 16,
-                left: 16,
-                right: 16,
+                bottom: 24,
+                left: 26,
+                right: 26,
               ),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),
               ),
-              insetPadding: const EdgeInsets.all(0),
+              // insetPadding: const EdgeInsets.all(50),
               buttonPadding: const EdgeInsets.all(0),
               // titlePadding: const EdgeInsets.all(0),
               title: Text(
@@ -85,7 +85,7 @@ class Dialogs {
                         margin: const EdgeInsets.only(
                             top: 1, bottom: 0, left: 0, right: 0),
                         width: double.infinity,
-                        height: 46,
+                        height: 48,
                         child: TextButton(
                           style: const ButtonStyle(
                             splashFactory: NoSplash.splashFactory,
@@ -94,8 +94,8 @@ class Dialogs {
                             confirmText,
                             style: TextStyle(
                               color: typeDialog == DialogType.warning
-                                  ? Colors.red
-                                  : Colors.blue,
+                                  ? Colors.red[600]
+                                  : Colors.blue[500],
                               fontFamily: 'Roboto',
                               fontSize: 15,
                               fontWeight: FontWeight.w700,
@@ -123,7 +123,7 @@ class Dialogs {
                           margin: const EdgeInsets.only(
                               top: 1, bottom: 0, left: 0, right: 0),
                           width: double.infinity,
-                          height: 46,
+                          height: 48,
                           child: TextButton(
                             child: Text(
                               cancelText,
@@ -154,7 +154,7 @@ class Dialogs {
                           margin: const EdgeInsets.only(
                               top: 1, bottom: 0, left: 0, right: 0),
                           width: double.infinity,
-                          height: 46,
+                          height: 48,
                           child: TextButton(
                             child: Text(
                               neutralText,
