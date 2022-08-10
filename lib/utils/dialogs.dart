@@ -100,7 +100,8 @@ class Dialogs {
                           child: Text(
                             confirmText,
                             style: TextStyle(
-                              color: typeDialog == DialogType.warning
+                              color: typeDialog == DialogType.warning ||
+                                      typeDialog == DialogType.error
                                   ? Colors.red[600]
                                   : Colors.blue[500],
                               fontFamily: 'Roboto',
