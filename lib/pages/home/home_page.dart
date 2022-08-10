@@ -3,10 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
+import 'package:mosya/pages/auth/login_page.dart';
 import 'package:mosya/pages/home/booking_page.dart';
 import 'package:mosya/pages/home/home_screen.dart';
 import 'package:mosya/pages/home/profile_screen.dart';
 import 'package:mosya/utils/customcolor.dart';
+import 'package:mosya/utils/dialogs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -42,6 +45,32 @@ class _HomePageState extends State<HomePage> {
       //     carDesc: "",
       // ));
     }
+  }
+
+  void goToLoginPage() {
+    _store?.close();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
+  }
+
+  void logOut() {
+    Dialogs.buildDialog(
+      typeDialog: DialogType.warning,
+      context: context,
+      title: 'Perhatian',
+      message: 'Apakah anda yakin ingin keluar?',
+      confirmText: 'Keluar',
+      cancelText: 'Batal',
+      onConfirm: () async {
+        final pref = await SharedPreferences.getInstance();
+        await pref.remove('isSignIn');
+        await pref.remove('userId');
+
+        goToLoginPage();
+      },
+    );
   }
 
   void onItemTapped(int index) {
@@ -92,11 +121,13 @@ class _HomePageState extends State<HomePage> {
           actions: [
             IconButton(
               icon: SvgPicture.asset(
-                'assets/icons/svg/fi-rr-bell.svg',
+                'assets/icons/svg/fi-rs-log-out.svg',
                 width: 24,
                 color: CustomColor.black500,
               ),
-              onPressed: () {},
+              onPressed: () {
+                logOut();
+              },
             ),
           ],
           backgroundColor: Colors.white,
