@@ -13,6 +13,7 @@ class Dialogs {
     required BuildContext context,
     required String title,
     required String message,
+    bool isCancelable = true,
     String typeDialog = DialogType.info,
     String confirmText = 'Oke',
     String? cancelText,
@@ -23,8 +24,10 @@ class Dialogs {
   }) {
     showDialog(
         context: context,
+        barrierDismissible: isCancelable,
         builder: (context) {
           return AlertDialog(
+              backgroundColor: CustomColor.backgroundDialog,
               actionsPadding: const EdgeInsets.all(0),
               actionsOverflowDirection: VerticalDirection.up,
               actionsAlignment: MainAxisAlignment.center,
@@ -74,7 +77,7 @@ class Dialogs {
                       // Confirm Button
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: CustomColor.backgroundDialog,
                           borderRadius:
                               neutralText == null && cancelText == null
                                   ? const BorderRadius.only(
@@ -83,7 +86,11 @@ class Dialogs {
                                   : const BorderRadius.all(Radius.circular(0)),
                         ),
                         margin: const EdgeInsets.only(
-                            top: 1, bottom: 0, left: 0, right: 0),
+                          top: 1,
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                        ),
                         width: double.infinity,
                         height: 48,
                         child: TextButton(
@@ -113,7 +120,7 @@ class Dialogs {
                       if (cancelText != null)
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: CustomColor.backgroundDialog,
                             borderRadius: neutralText == null
                                 ? const BorderRadius.only(
                                     bottomLeft: Radius.circular(16.0),
@@ -121,7 +128,11 @@ class Dialogs {
                                 : const BorderRadius.all(Radius.circular(0)),
                           ),
                           margin: const EdgeInsets.only(
-                              top: 1, bottom: 0, left: 0, right: 0),
+                            top: 1,
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                          ),
                           width: double.infinity,
                           height: 48,
                           child: TextButton(
@@ -146,13 +157,18 @@ class Dialogs {
                       if (neutralText != null)
                         Container(
                           decoration: const BoxDecoration(
-                            color: Colors.white,
+                            color: CustomColor.backgroundDialog,
                             borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(16.0),
-                                bottomRight: Radius.circular(16.0)),
+                              bottomLeft: Radius.circular(16.0),
+                              bottomRight: Radius.circular(16.0),
+                            ),
                           ),
                           margin: const EdgeInsets.only(
-                              top: 1, bottom: 0, left: 0, right: 0),
+                            top: 1,
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                          ),
                           width: double.infinity,
                           height: 48,
                           child: TextButton(
