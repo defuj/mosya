@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/pages/auth/on_time_password_page.dart';
 import 'package:mosya/utils/customcolor.dart';
+import 'package:mosya/utils/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -25,20 +25,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       if (Helper.isValidEmail(email)) {
         final check = userBox?.query(User_.userEmail.equals(email)).build();
         if (check!.find().isEmpty) {
-          Fluttertoast.showToast(
-            msg: "Akun tidak ditemukan",
-            toastLength: Toast.LENGTH_SHORT,
-            timeInSecForIosWeb: 2,
-            gravity: ToastGravity.BOTTOM,
+          Dialogs.buildDialog(
+            typeDialog: DialogType.warning,
+            context: context,
+            title: 'Perhatian',
+            message: 'Akun tidak ditemukan',
           );
         } else {
           _store?.close();
-          Fluttertoast.showToast(
-            msg: "Kami telah mengirimkan kode verifikasi ke email anda",
-            toastLength: Toast.LENGTH_SHORT,
-            timeInSecForIosWeb: 2,
-            gravity: ToastGravity.BOTTOM,
-          );
 
           Navigator.pushReplacement(
             context,
@@ -51,19 +45,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           );
         }
       } else {
-        Fluttertoast.showToast(
-          msg: "Email tidak valid",
-          toastLength: Toast.LENGTH_SHORT,
-          timeInSecForIosWeb: 2,
-          gravity: ToastGravity.BOTTOM,
+        Dialogs.buildDialog(
+          typeDialog: DialogType.error,
+          context: context,
+          title: 'Perhatian',
+          message: 'Email tidak valid',
         );
       }
     } else {
-      Fluttertoast.showToast(
-        msg: "Harap masukan email",
-        toastLength: Toast.LENGTH_SHORT,
-        timeInSecForIosWeb: 2,
-        gravity: ToastGravity.BOTTOM,
+      Dialogs.buildDialog(
+        typeDialog: DialogType.error,
+        context: context,
+        title: 'Perhatian',
+        message: 'Harap masukan email',
       );
     }
   }
