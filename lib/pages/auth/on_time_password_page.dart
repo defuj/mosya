@@ -96,13 +96,11 @@ class _OnTimePasswordState extends State<OnTimePasswordPage> {
           backgroundColor: CustomColor.black50,
           shadowColor: null,
           elevation: 0,
-          title: const Text(
+          title: Text(
             'Masukkan Kode Verifikasi',
-            style: TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
           ),
         ),
         body: Center(
@@ -117,27 +115,24 @@ class _OnTimePasswordState extends State<OnTimePasswordPage> {
                   color: CustomColor.orange500,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Masukan Kode OTP',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: CustomColor.black700,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: CustomColor.black700,
+                      ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Text(
                   'Masukan Kode OTP yang dikirim melalui email ke ${Helper.secureEmail(widget.email.toString())}',
-                  style: const TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 14,
-                    color: CustomColor.black500,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2!
+                      .copyWith(color: CustomColor.black500),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -174,14 +169,12 @@ class _OnTimePasswordState extends State<OnTimePasswordPage> {
                   onPressed: () {
                     resendCode();
                   },
-                  child: const Text(
+                  child: Text(
                     'Kirim Ulang Kode',
-                    style: TextStyle(
-                      fontFamily: 'OpenSans',
-                      fontSize: 14,
-                      color: CustomColor.orange500,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          color: CustomColor.orange500,
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
                 ),
               ),
@@ -189,10 +182,7 @@ class _OnTimePasswordState extends State<OnTimePasswordPage> {
                 visible: resendStatus == false,
                 child: Text(
                   'Silahkan tunggu ${time.toInt()} detik untuk mengirim ulang.',
-                  style: const TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 14,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
             ],
