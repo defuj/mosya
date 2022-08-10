@@ -8,7 +8,7 @@ import 'package:mosya/pages/home/booking_page.dart';
 import 'package:mosya/pages/home/home_screen.dart';
 import 'package:mosya/pages/home/profile_screen.dart';
 import 'package:mosya/utils/customcolor.dart';
-import 'package:mosya/utils/dialogs.dart';
+import 'package:mosya/components/dialogs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {

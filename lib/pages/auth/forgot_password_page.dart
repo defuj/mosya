@@ -6,7 +6,7 @@ import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/pages/auth/on_time_password_page.dart';
 import 'package:mosya/utils/customcolor.dart';
-import 'package:mosya/utils/dialogs.dart';
+import 'package:mosya/components/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 
 class ForgotPassword extends StatefulWidget {

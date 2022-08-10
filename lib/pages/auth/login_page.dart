@@ -7,7 +7,7 @@ import 'package:mosya/components/text_field.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/utils/customcolor.dart';
-import 'package:mosya/utils/dialogs.dart';
+import 'package:mosya/components/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

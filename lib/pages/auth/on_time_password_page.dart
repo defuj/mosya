@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mosya/pages/auth/reset_password_page.dart';
 import 'package:mosya/utils/customcolor.dart';
-import 'package:mosya/utils/dialogs.dart';
+import 'package:mosya/components/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
