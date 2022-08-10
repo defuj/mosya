@@ -25,6 +25,7 @@ dependencies:
     encrypt: ^5.0.1
     flutter_launcher_icons: ^0.9.2
     pin_code_fields: ^7.4.0
+    google_fonts: ^3.0.1
     # for ObjectBox Sync use this dependency instead:
     # objectbox_sync_flutter_libs: any
 
