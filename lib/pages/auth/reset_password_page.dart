@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:mosya/components/button.dart';
+import 'package:mosya/components/text_field.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/utils/customcolor.dart';
@@ -138,97 +141,56 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Reset Kata Sandi',
-                        style: TextStyle(
-                          fontFamily: 'OpenSans',
-                          fontSize: 22,
-                          color: CustomColor.black700,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                              color: CustomColor.black700,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 6),
-                        child: const Text(
+                        child: Text(
                           'Silakan masukkan kata sandi baru untuk akun Anda.',
-                          style: TextStyle(
-                            fontFamily: 'OpenSans',
-                            fontSize: 14,
-                            color: CustomColor.black500,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: CustomColor.black500),
                           textAlign: TextAlign.justify,
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 6, bottom: 6),
-                        decoration: BoxDecoration(
-                          color: CustomColor.black50,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: TextFormField(
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.fromLTRB(16, 12, 16, 12),
-                            hintText: "Kata Sandi",
-                            hintStyle: TextStyle(
-                              color: CustomColor.black400,
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                          maxLines: 1,
-                          onChanged: (value) {
-                            password = value;
-                          },
+                      formDefault(
+                        context: context,
+                        onChange: (value) {
+                          password = value;
+                        },
+                        hintText: 'Kata Sandi',
+                        obscureText: true,
+                        obscuringCharacter: "*",
+                        prefixIcon: SvgPicture.asset(
+                          'assets/icons/svg/fi-rr-lock.svg',
+                          width: 16,
+                          color: CustomColor.black400,
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 6, bottom: 6),
-                        decoration: BoxDecoration(
-                          color: CustomColor.black50,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: TextFormField(
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.fromLTRB(16, 12, 16, 12),
-                            hintText: "Konfirmasi Kata Sandi",
-                            hintStyle: TextStyle(
-                              color: CustomColor.black400,
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                          maxLines: 1,
-                          onChanged: (value) {
-                            confirmPassword = value;
-                          },
+                      formDefault(
+                        context: context,
+                        onChange: (value) {
+                          confirmPassword = value;
+                        },
+                        hintText: 'Konfirmasi Kata Sandi',
+                        obscureText: true,
+                        obscuringCharacter: "*",
+                        prefixIcon: SvgPicture.asset(
+                          'assets/icons/svg/fi-rr-lock.svg',
+                          width: 16,
+                          color: CustomColor.black400,
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 46,
-                        margin: const EdgeInsets.only(top: 16),
-                        decoration: BoxDecoration(
-                          color: CustomColor.orange500,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            resetPassword();
-                          },
-                          child: const Text(
-                            'Reset Kata Sandi',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
+                      buttonDefault(
+                        context: context,
+                        onPressed: resetPassword,
+                        text: 'Reset Kata Sandi',
                       ),
                     ],
                   ),
