@@ -2,10 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mosya/components/button.dart';
+import 'package:mosya/components/text_field.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/utils/customcolor.dart';
+import 'package:mosya/utils/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,62 +73,64 @@ class _RegisterPageState extends State<RegisterPage> {
                   userPassword: Helper.encryptPassword(confirmPassword),
                 );
                 userBox?.put(userModel);
-
-                Fluttertoast.showToast(
-                  msg: "Pendaftaran Berhasil",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.CENTER,
-                  timeInSecForIosWeb: 2,
+                Dialogs.buildDialog(
+                  context: context,
+                  title: "Berhail",
+                  message: "Pendafataran berhasil",
+                  typeDialog: DialogType.success,
+                  isCancelable: false,
+                  confirmText: "Masuk",
+                  onConfirm: () => setData(userModel),
                 );
                 // setData(userModel);
               } else {
-                Fluttertoast.showToast(
-                  msg: "Nomor telpon sudah digunakan",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.CENTER,
-                  timeInSecForIosWeb: 2,
+                Dialogs.buildDialog(
+                  context: context,
+                  title: "Perhatian",
+                  message: "Nomor telpon sudah digunakan",
+                  typeDialog: DialogType.error,
                 );
               }
             } else {
-              Fluttertoast.showToast(
-                msg: "Alamat email sudah digunakan",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 2,
+              Dialogs.buildDialog(
+                context: context,
+                title: "Perhatian",
+                message: "Alamat email sudah digunakan",
+                typeDialog: DialogType.error,
               );
             }
             checkEmail?.close();
             checkPhone?.close();
           } else {
-            Fluttertoast.showToast(
-              msg: "Konfirmasi kata sandi tidak sama",
-              toastLength: Toast.LENGTH_LONG,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 2,
+            Dialogs.buildDialog(
+              context: context,
+              title: "Perhatian",
+              message: "Konfirmasi kata sandi tidak sama",
+              typeDialog: DialogType.error,
             );
           }
         } else {
-          Fluttertoast.showToast(
-            msg: "Alamat Email tidak valid",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 2,
+          Dialogs.buildDialog(
+            context: context,
+            title: "Perhatian",
+            message: "Alamat email tidak valid",
+            typeDialog: DialogType.error,
           );
         }
       } else {
-        Fluttertoast.showToast(
-          msg: "Nomor Telpol tidak valid",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 2,
+        Dialogs.buildDialog(
+          context: context,
+          title: "Perhatian",
+          message: "Nomor telpon tidak valid",
+          typeDialog: DialogType.error,
         );
       }
     } else {
-      Fluttertoast.showToast(
-        msg: "Form tidak boleh kosong",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 2,
+      Dialogs.buildDialog(
+        context: context,
+        title: "Perhatian",
+        message: "Form tidak boleh kosong",
+        typeDialog: DialogType.error,
       );
     }
   }
@@ -187,205 +191,98 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Text(
+                            Text(
                               'Mendaftar',
-                              style: TextStyle(
-                                fontFamily: 'OpenSans',
-                                fontSize: 16,
-                                color: CustomColor.black500,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(color: CustomColor.black500),
                             ),
-                            const Text(
+                            Text(
                               'Siapkan Akun kamu',
-                              style: TextStyle(
-                                fontFamily: 'OpenSans',
-                                fontSize: 20,
-                                color: CustomColor.black700,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                    color: CustomColor.black700,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 30),
-                              child: const Text(
+                              child: Text(
                                 'Masukan informasi akun kamu',
-                                style: TextStyle(
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 14,
-                                  color: CustomColor.black500,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(color: CustomColor.black500),
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.only(top: 12),
-                              decoration: BoxDecoration(
-                                color: CustomColor.black50,
-                                borderRadius: BorderRadius.circular(8.0),
+                            formDefault(
+                              context: context,
+                              onChange: (value) {
+                                name = value;
+                              },
+                              hintText: 'Nama Lengkap',
+                              prefixIcon: SvgPicture.asset(
+                                'assets/icons/svg/fi-rr-user.svg',
+                                width: 16,
+                                color: CustomColor.black400,
                               ),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                                  hintText: "Nama Lengkap",
-                                  hintStyle: const TextStyle(
-                                    color: CustomColor.black400,
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 14,
-                                  ),
-                                  border: InputBorder.none,
-                                  prefixIcon: Align(
-                                    heightFactor: 1.0,
-                                    widthFactor: 1.0,
-                                    child: SvgPicture.asset(
-                                      'assets/icons/svg/fi-rr-user.svg',
-                                      width: 16,
-                                      color: CustomColor.black400,
-                                    ),
-                                  ),
-                                ),
-                                keyboardType: TextInputType.name,
-                                maxLines: 1,
-                                onChanged: (value) {
-                                  name = value;
-                                },
+                              keyboardType: TextInputType.name,
+                            ),
+                            formDefault(
+                              context: context,
+                              onChange: (value) {
+                                phone = value;
+                              },
+                              hintText: 'Nomor Telpon',
+                              prefixIcon: SvgPicture.asset(
+                                'assets/icons/svg/fi-rr-hastag.svg',
+                                width: 16,
+                                color: CustomColor.black400,
+                              ),
+                              keyboardType: TextInputType.phone,
+                            ),
+                            formDefault(
+                              context: context,
+                              onChange: (value) {
+                                email = value;
+                              },
+                              hintText: 'Email',
+                              keyboardType: TextInputType.emailAddress,
+                              prefixIcon: SvgPicture.asset(
+                                'assets/icons/svg/fi-rr-at.svg',
+                                width: 16,
+                                color: CustomColor.black400,
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.only(top: 12),
-                              decoration: BoxDecoration(
-                                color: CustomColor.black50,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                                  hintText: "Nomor Telpon",
-                                  hintStyle: const TextStyle(
-                                    color: CustomColor.black400,
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 14,
-                                  ),
-                                  border: InputBorder.none,
-                                  prefixIcon: Align(
-                                    heightFactor: 1.0,
-                                    widthFactor: 1.0,
-                                    child: SvgPicture.asset(
-                                      'assets/icons/svg/fi-rr-hastag.svg',
-                                      width: 16,
-                                      color: CustomColor.black400,
-                                    ),
-                                  ),
-                                ),
-                                keyboardType: TextInputType.phone,
-                                maxLines: 1,
-                                onChanged: (value) {
-                                  phone = value;
-                                },
+                            formDefault(
+                              context: context,
+                              onChange: (value) {
+                                password = value;
+                              },
+                              hintText: 'Kata Sandi',
+                              obscureText: true,
+                              obscuringCharacter: "*",
+                              prefixIcon: SvgPicture.asset(
+                                'assets/icons/svg/fi-rr-lock.svg',
+                                width: 16,
+                                color: CustomColor.black400,
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.only(top: 12),
-                              decoration: BoxDecoration(
-                                color: CustomColor.black50,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: TextFormField(
-                                textAlignVertical: TextAlignVertical.center,
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                                  hintText: "Email",
-                                  hintStyle: const TextStyle(
-                                    color: CustomColor.black400,
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 14,
-                                  ),
-                                  border: InputBorder.none,
-                                  prefixIcon: Align(
-                                    heightFactor: 1.0,
-                                    widthFactor: 1.0,
-                                    child: SvgPicture.asset(
-                                      'assets/icons/svg/fi-rr-at.svg',
-                                      width: 16,
-                                      color: CustomColor.black400,
-                                    ),
-                                  ),
-                                ),
-                                keyboardType: TextInputType.emailAddress,
-                                maxLines: 1,
-                                onChanged: (value) {
-                                  email = value;
-                                },
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(top: 12),
-                              decoration: BoxDecoration(
-                                color: CustomColor.black50,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: TextFormField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                                  hintText: "Kata Sandi",
-                                  hintStyle: const TextStyle(
-                                    color: CustomColor.black400,
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 14,
-                                  ),
-                                  border: InputBorder.none,
-                                  prefixIcon: Align(
-                                    widthFactor: 1.0,
-                                    heightFactor: 1.0,
-                                    child: SvgPicture.asset(
-                                      'assets/icons/svg/fi-rr-lock.svg',
-                                      width: 16,
-                                      color: CustomColor.black400,
-                                    ),
-                                  ),
-                                ),
-                                obscuringCharacter: '*',
-                                maxLines: 1,
-                                onChanged: (value) {
-                                  password = value;
-                                },
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(top: 12),
-                              decoration: BoxDecoration(
-                                color: CustomColor.black50,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: TextFormField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                                  hintText: "Konfirmasi Kata Sandi",
-                                  hintStyle: const TextStyle(
-                                    color: CustomColor.black400,
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 14,
-                                  ),
-                                  border: InputBorder.none,
-                                  prefixIcon: Align(
-                                    widthFactor: 1.0,
-                                    heightFactor: 1.0,
-                                    child: SvgPicture.asset(
-                                      'assets/icons/svg/fi-rr-lock.svg',
-                                      width: 16,
-                                      color: CustomColor.black400,
-                                    ),
-                                  ),
-                                ),
-                                obscuringCharacter: '*',
-                                maxLines: 1,
-                                onChanged: (value) {
-                                  confirmPassword = value;
-                                },
+                            formDefault(
+                              context: context,
+                              onChange: (value) {
+                                confirmPassword = value;
+                              },
+                              hintText: 'Konfirmasi Kata Sandi',
+                              obscureText: true,
+                              obscuringCharacter: "*",
+                              prefixIcon: SvgPicture.asset(
+                                'assets/icons/svg/fi-rr-lock.svg',
+                                width: 16,
+                                color: CustomColor.black400,
                               ),
                             ),
                             Container(
@@ -394,79 +291,64 @@ class _RegisterPageState extends State<RegisterPage> {
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
                                   children: [
-                                    const TextSpan(
+                                    TextSpan(
                                       text:
                                           'Dengan mendaftar, kamu menyetujui ',
-                                      style: TextStyle(
-                                        color: CustomColor.black500,
-                                        fontFamily: 'OpenSans',
-                                        fontSize: 14,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                              color: CustomColor.black500),
                                     ),
                                     TextSpan(
                                       text: 'Syarat Ketentuan',
-                                      style: const TextStyle(
-                                        color: CustomColor.orange500,
-                                        fontFamily: 'OpenSans',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .button!
+                                          .copyWith(
+                                            color: CustomColor.orange500,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {},
                                     ),
-                                    const TextSpan(
+                                    TextSpan(
                                       text: ' dan ',
-                                      style: TextStyle(
-                                        color: CustomColor.black500,
-                                        fontFamily: 'OpenSans',
-                                        fontSize: 14,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                              color: CustomColor.black500),
                                     ),
                                     TextSpan(
                                       text: 'Kebijakan Privasi',
-                                      style: const TextStyle(
-                                        color: CustomColor.orange500,
-                                        fontFamily: 'OpenSans',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .button!
+                                          .copyWith(
+                                            color: CustomColor.orange500,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {},
                                     ),
-                                    const TextSpan(
+                                    TextSpan(
                                       text: ' kami.',
-                                      style: TextStyle(
-                                        color: CustomColor.black500,
-                                        fontFamily: 'OpenSans',
-                                        fontSize: 14,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                              color: CustomColor.black500),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-                            Container(
-                              width: double.infinity,
-                              margin: const EdgeInsets.only(top: 16),
-                              decoration: BoxDecoration(
-                                color: CustomColor.orange500,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: TextButton(
-                                onPressed: () {
-                                  checkForm();
-                                },
-                                child: const Text(
-                                  'Buat Akun',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            )
+                            buttonDefault(
+                              context: context,
+                              onPressed: checkForm,
+                              text: 'Buat Akun',
+                            ),
                           ],
                         ),
                       ),
