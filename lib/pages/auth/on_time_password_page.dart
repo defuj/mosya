@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosya/pages/auth/reset_password_page.dart';
 import 'package:mosya/utils/customcolor.dart';
+import 'package:mosya/utils/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -61,11 +61,11 @@ class _OnTimePasswordState extends State<OnTimePasswordPage> {
         ),
       );
     } else {
-      Fluttertoast.showToast(
-        msg: "Kode verifikasi salah",
-        toastLength: Toast.LENGTH_SHORT,
-        timeInSecForIosWeb: 2,
-        gravity: ToastGravity.BOTTOM,
+      Dialogs.buildDialog(
+        typeDialog: DialogType.error,
+        context: context,
+        title: 'Perhatian',
+        message: 'Kode verifikasi salah',
       );
     }
   }
