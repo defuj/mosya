@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mosya/components/button.dart';
+import 'package:mosya/components/text_field.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/utils/customcolor.dart';
@@ -127,73 +129,32 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       // email field
-                      Container(
-                        margin: const EdgeInsets.only(top: 12),
-                        decoration: BoxDecoration(
-                          color: CustomColor.black50,
-                          borderRadius: BorderRadius.circular(8.0),
+                      formDefault(
+                        context: context,
+                        onChange: (value) {
+                          email = value;
+                        },
+                        hintText: 'Email',
+                        prefixIcon: SvgPicture.asset(
+                          'assets/icons/svg/fi-rr-at.svg',
+                          width: 16,
+                          color: CustomColor.black400,
                         ),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                            hintText: "Email",
-                            hintStyle: const TextStyle(
-                              color: CustomColor.black400,
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                            ),
-                            border: InputBorder.none,
-                            prefixIcon: Align(
-                              heightFactor: 1.0,
-                              widthFactor: 1.0,
-                              child: SvgPicture.asset(
-                                'assets/icons/svg/fi-rr-at.svg',
-                                width: 16,
-                                color: CustomColor.black400,
-                              ),
-                            ),
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          onChanged: (value) {
-                            email = value;
-                          },
-                        ),
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       // password field
-                      Container(
-                        margin: const EdgeInsets.only(top: 12),
-                        decoration: BoxDecoration(
-                          color: CustomColor.black50,
-                          borderRadius: BorderRadius.circular(8.0),
+                      formDefault(
+                        context: context,
+                        onChange: (value) {
+                          password = value;
+                        },
+                        hintText: 'Kata Sandi',
+                        prefixIcon: SvgPicture.asset(
+                          'assets/icons/svg/fi-rr-lock.svg',
+                          width: 16,
+                          color: CustomColor.black400,
                         ),
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                            hintText: "Kata Sandi",
-                            hintStyle: const TextStyle(
-                              color: CustomColor.black400,
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                            ),
-                            border: InputBorder.none,
-                            prefixIcon: Align(
-                              widthFactor: 1.0,
-                              heightFactor: 1.0,
-                              child: SvgPicture.asset(
-                                'assets/icons/svg/fi-rr-lock.svg',
-                                width: 16,
-                                color: CustomColor.black400,
-                              ),
-                            ),
-                          ),
-                          obscuringCharacter: '*',
-                          onChanged: (value) {
-                            password = value;
-                          },
-                        ),
+                        obscureText: true,
                       ),
                       Align(
                         alignment: Alignment.centerRight,
@@ -202,12 +163,10 @@ class _LoginPageState extends State<LoginPage> {
                           child: RichText(
                             text: TextSpan(
                               text: 'Lupa kata sandi?',
-                              style: const TextStyle(
-                                color: CustomColor.orange500,
-                                fontFamily: 'OpenSans',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .button!
+                                  .copyWith(color: CustomColor.orange500),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   _store?.close();
@@ -219,27 +178,10 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       // login button
-                      Container(
-                        width: double.infinity,
-                        height: 46,
-                        decoration: BoxDecoration(
-                          color: CustomColor.orange500,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        margin: const EdgeInsets.only(top: 16),
-                        child: TextButton(
-                          onPressed: () {
-                            checkAccount();
-                          },
-                          child: const Text(
-                            "Masuk",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
+                      buttonDefault(
+                        context: context,
+                        onPressed: checkAccount,
+                        text: 'Masuk',
                       ),
                       //container for register button
                       Container(
@@ -247,22 +189,19 @@ class _LoginPageState extends State<LoginPage> {
                         child: RichText(
                           text: TextSpan(
                             children: [
-                              const TextSpan(
+                              TextSpan(
                                 text: "Belum punya akun? ",
-                                style: TextStyle(
-                                  color: CustomColor.black500,
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 14,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .button!
+                                    .copyWith(color: CustomColor.black500),
                               ),
                               TextSpan(
                                 text: "Daftar",
-                                style: const TextStyle(
-                                  color: CustomColor.orange500,
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .button!
+                                    .copyWith(color: CustomColor.orange500),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     _store?.close();
