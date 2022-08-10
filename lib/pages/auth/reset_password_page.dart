@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/utils/customcolor.dart';
+import 'package:mosya/utils/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 
 class ResetPasswordPage extends StatefulWidget {
@@ -29,48 +29,57 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               userBox?.query(User_.userEmail.equals(widget.email)).build();
           final result = query?.find();
           if (result!.isNotEmpty) {
-            result[0].userPassword = Helper.encryptPassword(password);
-            userBox?.put(result[0]);
-
-            Fluttertoast.showToast(
-              msg: "Password berhasil diubah",
-              toastLength: Toast.LENGTH_SHORT,
-              timeInSecForIosWeb: 2,
-              gravity: ToastGravity.BOTTOM,
-            );
+            if (result[0].userPassword != Helper.encryptPassword(password)) {
+              result[0].userPassword = Helper.encryptPassword(password);
+              userBox?.put(result[0]);
+              Dialogs.buildDialog(
+                  isCancelable: false,
+                  typeDialog: DialogType.success,
+                  context: context,
+                  title: 'Berhasil',
+                  message: 'Kata sandi berhasil diubah',
+                  onConfirm: () {
+                    _store?.close();
+                    Navigator.pop(context);
+                  });
+            } else {
+              Dialogs.buildDialog(
+                typeDialog: DialogType.error,
+                context: context,
+                title: 'Gagal',
+                message: 'Silahkan gunakan kata sandi lain',
+              );
+            }
           } else {
-            Fluttertoast.showToast(
-              msg: "Akun tidak ditemukan",
-              toastLength: Toast.LENGTH_SHORT,
-              timeInSecForIosWeb: 2,
-              gravity: ToastGravity.BOTTOM,
+            Dialogs.buildDialog(
+              typeDialog: DialogType.error,
+              context: context,
+              title: 'Perhatian',
+              message: 'Akun tidak ditemukan',
             );
           }
-          _store?.close();
-
-          Navigator.pop(context);
         } else {
-          Fluttertoast.showToast(
-            msg: "Konfirmasi kata sandi tidak sama",
-            toastLength: Toast.LENGTH_SHORT,
-            timeInSecForIosWeb: 2,
-            gravity: ToastGravity.BOTTOM,
+          Dialogs.buildDialog(
+            typeDialog: DialogType.error,
+            context: context,
+            title: 'Perhatian',
+            message: 'Konfirmasi kata sandi tidak sama',
           );
         }
       } else {
-        Fluttertoast.showToast(
-          msg: "Harap masukan konfirmasi kata sandi",
-          toastLength: Toast.LENGTH_SHORT,
-          timeInSecForIosWeb: 2,
-          gravity: ToastGravity.BOTTOM,
+        Dialogs.buildDialog(
+          typeDialog: DialogType.error,
+          context: context,
+          title: 'Perhatian',
+          message: 'Harap masukan konfirmasi kata sandi',
         );
       }
     } else {
-      Fluttertoast.showToast(
-        msg: "Harap masukan kata sandi",
-        toastLength: Toast.LENGTH_SHORT,
-        timeInSecForIosWeb: 2,
-        gravity: ToastGravity.BOTTOM,
+      Dialogs.buildDialog(
+        typeDialog: DialogType.error,
+        context: context,
+        title: 'Perhatian',
+        message: 'Harap masukan kata sandi',
       );
     }
   }
