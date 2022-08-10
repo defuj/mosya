@@ -23,30 +23,30 @@ class Main extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
         textTheme: TextTheme(
-          headline1: GoogleFonts.roboto(
+          headline1: GoogleFonts.openSans(
             fontSize: 92,
             fontWeight: FontWeight.w300,
             // letterSpacing: -1.5,
           ),
-          headline2: GoogleFonts.roboto(
+          headline2: GoogleFonts.openSans(
             fontSize: 57,
             fontWeight: FontWeight.w300,
             // letterSpacing: -0.5,
           ),
-          headline3: GoogleFonts.roboto(
+          headline3: GoogleFonts.openSans(
             fontSize: 46,
             fontWeight: FontWeight.w400,
           ),
-          headline4: GoogleFonts.roboto(
+          headline4: GoogleFonts.openSans(
             fontSize: 32,
             fontWeight: FontWeight.w400,
             // letterSpacing: 0.25,
           ),
-          headline5: GoogleFonts.roboto(
+          headline5: GoogleFonts.openSans(
             fontSize: 23,
             fontWeight: FontWeight.w400,
           ),
-          headline6: GoogleFonts.roboto(
+          headline6: GoogleFonts.openSans(
             fontSize: 19,
             fontWeight: FontWeight.w600,
             // letterSpacing: 0.15,
