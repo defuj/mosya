@@ -21,4 +21,7 @@ class CustomColor {
   static const orange700 = Color(0xFFA92710);
   static const orange800 = Color(0xFF88140A);
   static const orange900 = Color(0xFF710706);
+
+  static const backgroundDialog =
+      Colors.white; //Color.fromARGB(245, 255, 255, 255);
 }
