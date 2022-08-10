@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mosya/components/button.dart';
+import 'package:mosya/components/text_field.dart';
 import 'package:mosya/models/models.dart';
 import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/pages/auth/on_time_password_page.dart';
@@ -114,84 +116,46 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Lupa Kata Sandi',
-                        style: TextStyle(
-                          fontFamily: 'OpenSans',
-                          fontSize: 22,
-                          color: CustomColor.black700,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                              color: CustomColor.black700,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 6),
-                        child: const Text(
+                        child: Text(
                           'Silakan masukkan email akun Anda dan kami akan mengirimkan kode verifikasi untuk mereset kata sandi Anda.',
-                          style: TextStyle(
-                            fontFamily: 'OpenSans',
-                            fontSize: 14,
-                            color: CustomColor.black500,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: CustomColor.black500),
                           textAlign: TextAlign.justify,
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 16),
-                        child: const Text(
+                        child: Text(
                           'Alamat Email',
-                          style: TextStyle(
-                            fontFamily: 'OpenSans',
-                            fontSize: 14,
-                            color: CustomColor.black700,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: CustomColor.black700),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 6, bottom: 6),
-                        decoration: BoxDecoration(
-                          color: CustomColor.black50,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.fromLTRB(16, 12, 16, 12),
-                            hintText: "ex : user@domain.com",
-                            hintStyle: TextStyle(
-                              color: CustomColor.black400,
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          maxLines: 1,
-                          onChanged: (value) {
-                            email = value;
-                          },
-                        ),
+                      formDefault(
+                        context: context,
+                        onChange: (value) {
+                          email = value;
+                        },
+                        hintText: 'ex : user@domain.com',
+                        keyboardType: TextInputType.emailAddress,
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 46,
-                        margin: const EdgeInsets.only(top: 16),
-                        decoration: BoxDecoration(
-                          color: CustomColor.orange500,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            sendRequest();
-                          },
-                          child: const Text(
-                            'Kirim kode verifikasi',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
+                      buttonDefault(
+                        context: context,
+                        onPressed: sendRequest,
+                        text: 'Kirim Kode Verifikasi',
                       ),
                     ],
                   ),
