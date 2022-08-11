@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mosya/models/models.dart';
-import 'package:mosya/objectbox.g.dart';
+import 'package:isar/isar.dart';
 import 'package:mosya/pages/auth/login_page.dart';
 import 'package:mosya/pages/home/booking_page.dart';
 import 'package:mosya/pages/home/home_screen.dart';
@@ -12,46 +11,27 @@ import 'package:mosya/components/dialogs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final Isar isar;
+  const HomePage({
+    Key? key,
+    required this.isar,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  Store? _store;
-  Box<User>? userBox;
-  Box<Car>? carBox;
-  Box<CarImage>? carImageBox;
-
   int selectedIndex = 0;
 
-  void insertCar() {
-    final query = carBox?.query().build();
-    if (query!.find().isEmpty) {
-      // carBox!.put(Car(
-      //     carId: 1,
-      //     carMerk: "Toyota",
-      //     carModel: "Avanza",
-      //     carColor: "Hitam",
-      //     carYear: "2020",
-      //     carKilomoter: 0,
-      //     carFuel: "Bensin",
-      //     carPrice: 0.0,
-      //     carCondition: "Baru",
-      //     carDownPayment: "0",
-      //     carUnitCode: "",
-      //     carFlatNumber: "",
-      //     carDesc: "",
-      // ));
-    }
-  }
+  void insertCar() {}
 
   void goToLoginPage() {
-    _store?.close();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const LoginPage()),
+      MaterialPageRoute(
+        builder: (context) => LoginPage(isar: widget.isar),
+      ),
     );
   }
 
@@ -81,13 +61,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    openStore().then((Store store) {
-      _store = store;
-      userBox = _store?.box<User>();
-      carBox = _store?.box<Car>();
-      carImageBox = _store?.box<CarImage>();
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _refreshIndicatorKey.currentState?.show();
     });

@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:isar/isar.dart';
 import 'package:mosya/pages/auth/reset_password_page.dart';
 import 'package:mosya/utils/customcolor.dart';
 import 'package:mosya/components/dialogs.dart';
@@ -12,10 +12,12 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 class OnTimePasswordPage extends StatefulWidget {
   final String email;
   final String action;
+  final Isar isar;
   const OnTimePasswordPage({
     Key? key,
     required this.email,
     required this.action,
+    required this.isar,
   }) : super(key: key);
 
   @override
@@ -51,22 +53,33 @@ class _OnTimePasswordState extends State<OnTimePasswordPage> {
   }
 
   void verificationCode() {
+    Progress progress = Progress(context: context);
+    progress.show();
     if (code == "123456") {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ResetPasswordPage(
-            email: widget.email,
-          ),
-        ),
-      );
+      progress.dismiss(
+          seconds: 2,
+          onFinished: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResetPasswordPage(
+                  isar: widget.isar,
+                  email: widget.email,
+                ),
+              ),
+            );
+          });
     } else {
-      Dialogs.buildDialog(
-        typeDialog: DialogType.error,
-        context: context,
-        title: 'Perhatian',
-        message: 'Kode verifikasi salah',
-      );
+      progress.dismiss(
+          seconds: 2,
+          onFinished: () {
+            Dialogs.buildDialog(
+              typeDialog: DialogType.error,
+              context: context,
+              title: 'Perhatian',
+              message: 'Kode verifikasi salah',
+            );
+          });
     }
   }
 

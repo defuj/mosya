@@ -7,13 +7,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:isar/isar.dart';
 
 import 'package:mosya/main.dart';
+import 'package:mosya/models/cars.dart';
+import 'package:mosya/models/users.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    late Isar isar;
+    Isar.open([UserSchema, CarSchema]).then((value) => isar = value);
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const Main());
+    await tester.pumpWidget(Main(
+      isar: isar,
+    ));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

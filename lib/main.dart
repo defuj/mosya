@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:isar/isar.dart';
+import 'package:mosya/models/cars.dart';
+import 'package:mosya/models/users.dart';
 import 'package:mosya/pages/auth/forgot_password_page.dart';
 import 'package:mosya/pages/auth/login_page.dart';
 import 'package:mosya/pages/auth/on_time_password_page.dart';
@@ -8,13 +11,22 @@ import 'package:mosya/pages/auth/reset_password_page.dart';
 import 'package:mosya/pages/home/home_page.dart';
 import 'package:mosya/pages/splash_screen_page.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
-  runApp(const Main());
+  WidgetsFlutterBinding.ensureInitialized();
+  final isar = await Isar.open(
+    [CarSchema, UserSchema],
+    directory: (await getApplicationDocumentsDirectory()).path,
+  );
+  runApp(Main(
+    isar: isar,
+  ));
 }
 
 class Main extends StatelessWidget {
-  const Main({Key? key}) : super(key: key);
+  final Isar isar;
+  const Main({Key? key, required this.isar}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -93,31 +105,40 @@ class Main extends StatelessWidget {
         switch (setting.name) {
           case 'login':
             return PageTransition(
-              child: const LoginPage(),
+              child: LoginPage(
+                isar: isar,
+              ),
               type: PageTransitionType.fade,
               settings: setting,
             );
           case 'register':
             return PageTransition(
-              child: const RegisterPage(),
+              child: RegisterPage(
+                isar: isar,
+              ),
               type: PageTransitionType.fade,
               settings: setting,
             );
           case 'home':
             return PageTransition(
-              child: const HomePage(),
+              child: HomePage(
+                isar: isar,
+              ),
               type: PageTransitionType.fade,
               settings: setting,
             );
           case 'forgot_password':
             return PageTransition(
-              child: const ForgotPassword(),
+              child: ForgotPassword(
+                isar: isar,
+              ),
               type: PageTransitionType.fade,
               settings: setting,
             );
           case 'reset_password':
             return PageTransition(
               child: ResetPasswordPage(
+                isar: isar,
                 email: setting.arguments as String,
               ),
               type: PageTransitionType.fade,
@@ -126,6 +147,7 @@ class Main extends StatelessWidget {
           case 'on_time_password':
             return PageTransition(
               child: OnTimePasswordPage(
+                isar: isar,
                 email: setting.arguments as String,
                 action: setting.arguments as String,
               ),

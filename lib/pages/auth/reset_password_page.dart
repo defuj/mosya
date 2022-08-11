@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:isar/isar.dart';
 import 'package:mosya/components/button.dart';
 import 'package:mosya/components/text_field.dart';
-import 'package:mosya/models/models.dart';
-import 'package:mosya/objectbox.g.dart';
+import 'package:mosya/models/users.dart';
 import 'package:mosya/utils/customcolor.dart';
 import 'package:mosya/components/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   final String email;
-  const ResetPasswordPage({Key? key, required this.email}) : super(key: key);
+  final Isar isar;
+  const ResetPasswordPage({
+    Key? key,
+    required this.email,
+    required this.isar,
+  }) : super(key: key);
 
   @override
   State<ResetPasswordPage> createState() => _ResetPasswordPageState();
 }
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
-  Store? _store;
-  late Box<User>? userBox;
-
   String password = "";
   String confirmPassword = "";
 
@@ -28,39 +30,56 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     if (password.isNotEmpty) {
       if (confirmPassword.isNotEmpty) {
         if (password == confirmPassword) {
-          final query =
-              userBox?.query(User_.userEmail.equals(widget.email)).build();
-          final result = query?.find();
-          if (result!.isNotEmpty) {
-            if (result[0].userPassword != Helper.encryptPassword(password)) {
-              result[0].userPassword = Helper.encryptPassword(password);
-              userBox?.put(result[0]);
-              Dialogs.buildDialog(
-                  isCancelable: false,
-                  typeDialog: DialogType.success,
-                  context: context,
-                  title: 'Berhasil',
-                  message: 'Kata sandi berhasil diubah',
-                  onConfirm: () {
-                    _store?.close();
-                    Navigator.pop(context);
-                  });
+          Progress progress = Progress(context: context);
+          progress.show();
+          widget.isar.users
+              .filter()
+              .userEmailEqualTo(widget.email)
+              .findAll()
+              .then((result) {
+            if (result.isNotEmpty) {
+              final user = result[0];
+              if (user.userPassword != password) {
+                widget.isar.writeTxn(
+                    () => widget.isar.users.put(user..userPassword = password));
+                progress.dismiss(
+                    seconds: 2,
+                    onFinished: () {
+                      Dialogs.buildDialog(
+                          isCancelable: false,
+                          typeDialog: DialogType.success,
+                          context: context,
+                          title: 'Berhasil',
+                          message: 'Kata sandi Anda berhasil diubah',
+                          onConfirm: () {
+                            Navigator.pop(context);
+                          });
+                    });
+              } else {
+                progress.dismiss(
+                    seconds: 2,
+                    onFinished: () {
+                      Dialogs.buildDialog(
+                        typeDialog: DialogType.error,
+                        context: context,
+                        title: 'Gagal',
+                        message: 'Silahkan gunakan kata sandi lain',
+                      );
+                    });
+              }
             } else {
-              Dialogs.buildDialog(
-                typeDialog: DialogType.error,
-                context: context,
-                title: 'Gagal',
-                message: 'Silahkan gunakan kata sandi lain',
-              );
+              progress.dismiss(
+                  seconds: 2,
+                  onFinished: () {
+                    Dialogs.buildDialog(
+                      typeDialog: DialogType.error,
+                      context: context,
+                      title: 'Oops',
+                      message: 'Akun tidak ditemukan',
+                    );
+                  });
             }
-          } else {
-            Dialogs.buildDialog(
-              typeDialog: DialogType.error,
-              context: context,
-              title: 'Perhatian',
-              message: 'Akun tidak ditemukan',
-            );
-          }
+          });
         } else {
           Dialogs.buildDialog(
             typeDialog: DialogType.error,
@@ -89,18 +108,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
   @override
   void initState() {
-    openStore().then((Store store) {
-      setState(() {
-        _store = store;
-        userBox = _store?.box<User>();
-      });
-    });
     super.initState();
   }
 
   @override
   void dispose() {
-    _store?.close();
     super.dispose();
   }
 
@@ -162,7 +174,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       formDefault(
                         context: context,
                         onChange: (value) {
-                          password = value;
+                          password = Helper.encryptPassword(value);
                         },
                         hintText: 'Kata Sandi',
                         obscureText: true,
@@ -176,7 +188,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       formDefault(
                         context: context,
                         onChange: (value) {
-                          confirmPassword = value;
+                          confirmPassword = Helper.encryptPassword(value);
                         },
                         hintText: 'Konfirmasi Kata Sandi',
                         obscureText: true,

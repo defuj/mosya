@@ -2,26 +2,27 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:isar/isar.dart';
 import 'package:mosya/components/button.dart';
 import 'package:mosya/components/text_field.dart';
-import 'package:mosya/models/models.dart';
-import 'package:mosya/objectbox.g.dart';
+import 'package:mosya/models/users.dart';
 import 'package:mosya/utils/customcolor.dart';
 import 'package:mosya/components/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  final Isar isar;
+  const RegisterPage({
+    Key? key,
+    required this.isar,
+  }) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  Store? _store;
-  Box<User>? userBox;
-
   var name = "";
   var phone = "";
   var email = "";
@@ -29,14 +30,18 @@ class _RegisterPageState extends State<RegisterPage> {
   var confirmPassword = "";
 
   void goHome() {
-    _store?.close();
     Navigator.pushReplacementNamed(context, 'home');
   }
 
   void setData(User user) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isSignIn', true);
-    await prefs.setInt('userId', user.userId);
+    final pref = await SharedPreferences.getInstance();
+    await pref.setBool('isSignIn', true);
+    await pref.setInt('userId', user.userId);
+    await pref.setString('userName', '${user.userName}');
+    await pref.setString('userEmail', '${user.userEmail}');
+    await pref.setString('userPhone', '${user.userPhone}');
+    await pref.setString('userPassword', '${user.userPassword}');
+    await pref.setString('userPicture', '${user.userPicture}');
 
     goHome();
   }
@@ -50,103 +55,130 @@ class _RegisterPageState extends State<RegisterPage> {
       if (Helper.isValidPhone(phone)) {
         if (Helper.isValidEmail(email)) {
           if (password == confirmPassword) {
-            // check email is already used
-            final checkEmail =
-                userBox?.query(User_.userEmail.equals(email)).build();
-            // check phone is already used
-            final checkPhone =
-                userBox?.query(User_.userPhone.equals(phone)).build();
-            final resultCheckEmail = checkEmail?.find();
-            final resultCheckPhone = checkPhone?.find();
-            if (resultCheckEmail!.isEmpty) {
-              if (resultCheckPhone!.isEmpty) {
-                // get max id
-                int userId = 0;
-                // if (userBox!.count() > 0) {
-                //   userId = userBox!.getAll().last.userId + 1;
-                // }
-                final userModel = User(
-                  userId: userId,
-                  userName: name,
-                  userEmail: email,
-                  userPhone: phone,
-                  userPassword: Helper.encryptPassword(confirmPassword),
-                );
-                userBox?.put(userModel);
-                Dialogs.buildDialog(
-                  context: context,
-                  title: "Berhail",
-                  message: "Pendafataran berhasil",
-                  typeDialog: DialogType.success,
-                  isCancelable: false,
-                  confirmText: "Masuk",
-                  onConfirm: () => setData(userModel),
-                );
-                // setData(userModel);
-              } else {
-                Dialogs.buildDialog(
-                  context: context,
-                  title: "Perhatian",
-                  message: "Nomor telpon sudah digunakan",
-                  typeDialog: DialogType.error,
-                );
-              }
-            } else {
-              Dialogs.buildDialog(
-                context: context,
-                title: "Perhatian",
-                message: "Alamat email sudah digunakan",
-                typeDialog: DialogType.error,
-              );
-            }
-            checkEmail?.close();
-            checkPhone?.close();
+            Dialogs.buildGeneralDialog(
+              context: context,
+              typeDialog: DialogType.warning,
+              title: 'Perhatian',
+              message:
+                  'Apakah semua data sudah benar? Silahkan lanjutkan jika data sudah benar.',
+              confirmText: 'Lanjutkan',
+              onConfirm: () {
+                Progress progress = Progress(context: context);
+                progress.show();
+                // check email is already used
+                widget.isar.users
+                    .filter()
+                    .userEmailEqualTo(email)
+                    .findAll()
+                    .then((result) {
+                  if (result.isEmpty) {
+                    // check phone number is already used
+                    widget.isar.users
+                        .filter()
+                        .userPhoneEqualTo(phone)
+                        .findAll()
+                        .then((value) {
+                      if (result.isEmpty) {
+                        // insert new user
+                        final user = User()
+                          ..userName = name
+                          ..userPhone = phone
+                          ..userEmail = email
+                          ..userPassword = password;
+                        widget.isar.writeTxn(() => widget.isar.users.put(user));
+                        widget.isar.users
+                            .filter()
+                            .userEmailEqualTo(email)
+                            .and()
+                            .userPasswordEqualTo(password)
+                            .findAll()
+                            .then((result) {
+                          setData(result[0]);
+                        });
+
+                        progress.dismiss(
+                            seconds: 3,
+                            onFinished: () {
+                              Dialogs.buildGeneralDialog(
+                                context: context,
+                                title: "Berhail",
+                                message: "Pendafataran berhasil",
+                                typeDialog: DialogType.success,
+                                isCancelable: false,
+                                confirmText: "Masuk",
+                                onConfirm: () => {setData(user)},
+                              );
+                            });
+                      } else {
+                        progress.dismiss(
+                            seconds: 3,
+                            onFinished: () {
+                              Dialogs.buildGeneralDialog(
+                                context: context,
+                                title: "Oops",
+                                message: "Nomor telpon sudah digunakan",
+                                typeDialog: DialogType.error,
+                              );
+                            });
+                      }
+                    });
+                  } else {
+                    progress.dismiss(
+                        seconds: 3,
+                        onFinished: () {
+                          Dialogs.buildGeneralDialog(
+                            context: context,
+                            title: "Oops",
+                            message: "Alamat email sudah digunakan",
+                            typeDialog: DialogType.error,
+                          );
+                        });
+                  }
+                });
+              },
+              cancelText: 'Batal',
+            );
           } else {
-            Dialogs.buildDialog(
+            Dialogs.buildGeneralDialog(
               context: context,
               title: "Perhatian",
               message: "Konfirmasi kata sandi tidak sama",
-              typeDialog: DialogType.error,
+              typeDialog: DialogType.warning,
             );
           }
         } else {
-          Dialogs.buildDialog(
+          Dialogs.buildGeneralDialog(
             context: context,
             title: "Perhatian",
             message: "Alamat email tidak valid",
-            typeDialog: DialogType.error,
+            typeDialog: DialogType.warning,
           );
         }
       } else {
-        Dialogs.buildDialog(
+        Dialogs.buildGeneralDialog(
           context: context,
           title: "Perhatian",
           message: "Nomor telpon tidak valid",
-          typeDialog: DialogType.error,
+          typeDialog: DialogType.warning,
         );
       }
     } else {
-      Dialogs.buildDialog(
+      Dialogs.buildGeneralDialog(
         context: context,
         title: "Perhatian",
         message: "Form tidak boleh kosong",
-        typeDialog: DialogType.error,
+        typeDialog: DialogType.warning,
       );
     }
   }
 
   @override
   void dispose() {
-    _store?.close();
     super.dispose();
   }
 
   @override
   void initState() {
-    openStore().then((Store store) {
-      _store = store;
-      userBox = _store?.box<User>();
-    });
     super.initState();
   }
 
@@ -260,7 +292,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             formDefault(
                               context: context,
                               onChange: (value) {
-                                password = value;
+                                password = Helper.encryptPassword(value);
                               },
                               hintText: 'Kata Sandi',
                               obscureText: true,
@@ -274,7 +306,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             formDefault(
                               context: context,
                               onChange: (value) {
-                                confirmPassword = value;
+                                confirmPassword = Helper.encryptPassword(value);
                               },
                               hintText: 'Konfirmasi Kata Sandi',
                               obscureText: true,

@@ -1,53 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:isar/isar.dart';
 import 'package:mosya/components/button.dart';
 import 'package:mosya/components/text_field.dart';
-import 'package:mosya/models/models.dart';
-import 'package:mosya/objectbox.g.dart';
 import 'package:mosya/pages/auth/on_time_password_page.dart';
 import 'package:mosya/utils/customcolor.dart';
 import 'package:mosya/components/dialogs.dart';
 import 'package:mosya/utils/helper.dart';
+import 'package:mosya/models/users.dart';
 
 class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
+  final Isar isar;
+  const ForgotPassword({Key? key, required this.isar}) : super(key: key);
 
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-Store? _store;
-Box<User>? userBox;
-
 class _ForgotPasswordState extends State<ForgotPassword> {
   var email = "";
+
+  void goToOTP() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => OnTimePasswordPage(
+          isar: widget.isar,
+          email: email,
+          action: 'forgot_password',
+        ),
+      ),
+    );
+  }
 
   void sendRequest() {
     if (email.isNotEmpty) {
       if (Helper.isValidEmail(email)) {
-        final check = userBox?.query(User_.userEmail.equals(email)).build();
-        if (check!.find().isEmpty) {
-          Dialogs.buildDialog(
-            typeDialog: DialogType.warning,
-            context: context,
-            title: 'Perhatian',
-            message: 'Akun tidak ditemukan',
-          );
-        } else {
-          _store?.close();
+        Progress progress = Progress(context: context);
+        progress.show();
 
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => OnTimePasswordPage(
-                email: email,
-                action: 'forgot_password',
-              ),
-            ),
-          );
-        }
+        widget.isar.users
+            .filter()
+            .userEmailEqualTo(email)
+            .findAll()
+            .then((result) {
+          if (result.isNotEmpty) {
+            progress.dismiss(
+                seconds: 2,
+                onFinished: () {
+                  goToOTP();
+                });
+          } else {
+            progress.dismiss(
+                seconds: 2,
+                onFinished: () {
+                  Dialogs.buildGeneralDialog(
+                    typeDialog: DialogType.warning,
+                    context: context,
+                    title: 'Perhatian',
+                    message: 'Akun tidak ditemukan',
+                  );
+                });
+          }
+        });
       } else {
-        Dialogs.buildDialog(
+        Dialogs.buildGeneralDialog(
           typeDialog: DialogType.error,
           context: context,
           title: 'Perhatian',
@@ -55,8 +72,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         );
       }
     } else {
-      Dialogs.buildDialog(
-        typeDialog: DialogType.error,
+      Dialogs.buildGeneralDialog(
+        typeDialog: DialogType.warning,
         context: context,
         title: 'Perhatian',
         message: 'Harap masukan email',
@@ -66,16 +83,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   @override
   void initState() {
-    openStore().then((Store store) {
-      _store = store;
-      userBox = _store?.box<User>();
-    });
     super.initState();
   }
 
   @override
   void dispose() {
-    _store?.close();
     super.dispose();
   }
 

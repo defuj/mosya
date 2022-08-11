@@ -2,39 +2,39 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:isar/isar.dart';
 import 'package:mosya/components/button.dart';
-import 'package:mosya/components/text_field.dart';
-import 'package:mosya/models/models.dart';
-import 'package:mosya/objectbox.g.dart';
-import 'package:mosya/utils/customcolor.dart';
 import 'package:mosya/components/dialogs.dart';
+import 'package:mosya/components/text_field.dart';
+import 'package:mosya/models/users.dart';
+import 'package:mosya/utils/customcolor.dart';
 import 'package:mosya/utils/helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final Isar isar;
+  const LoginPage({Key? key, required this.isar}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Store? _store;
-  late Box<User>? userBox;
   var email = "";
   var password = "";
 
-  void goHome() {
-    _store?.close();
-    Navigator.pushReplacementNamed(context, 'home');
-  }
+  void goHome() => Navigator.pushReplacementNamed(context, 'home');
+
+  void goRegister() => Navigator.pushNamed(context, 'register');
+
+  void goForgotPassword() => Navigator.pushNamed(context, 'forgot_password');
 
   void saveData(User user) async {
     final pref = await SharedPreferences.getInstance();
     await pref.setBool('isSignIn', true);
     await pref.setInt('userId', user.userId);
     await pref.setString('userName', '${user.userName}');
-    await pref.setString('userEmail', "${user.userEmail}");
+    await pref.setString('userEmail', '${user.userEmail}');
     await pref.setString('userPhone', '${user.userPhone}');
     await pref.setString('userPassword', '${user.userPassword}');
     await pref.setString('userPicture', '${user.userPicture}');
@@ -43,27 +43,38 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void checkAccount() {
+    Progress progress = Progress(context: context);
     if (email.isNotEmpty && password.isNotEmpty) {
-      final query = userBox
-          ?.query(
-            User_.userEmail.equals(email) &
-                User_.userPassword.equals(Helper.encryptPassword(password)),
-          )
-          .build();
-      final result = query?.find();
-      if (result!.isNotEmpty) {
-        saveData(result[0]);
-      } else {
-        Dialogs.buildDialog(
-          typeDialog: DialogType.warning,
-          context: context,
-          title: 'Perhatian',
-          message: 'Email atau password salah',
-          confirmText: 'Mengerti',
-        );
-      }
+      progress.show();
+      widget.isar.users
+          .filter()
+          .userEmailEqualTo(email)
+          .and()
+          .userPasswordEqualTo(password)
+          .findAll()
+          .then((result) {
+        if (result.isNotEmpty) {
+          progress.dismiss(
+              seconds: 3,
+              onFinished: () {
+                saveData(result[0]);
+              });
+        } else {
+          progress.dismiss(
+              seconds: 3,
+              onFinished: () {
+                Dialogs.buildGeneralDialog(
+                  typeDialog: DialogType.error,
+                  context: context,
+                  title: 'Oops',
+                  message: 'Email atau password salah',
+                  confirmText: 'Mengerti',
+                );
+              });
+        }
+      });
     } else {
-      Dialogs.buildDialog(
+      Dialogs.buildGeneralDialog(
         typeDialog: DialogType.warning,
         context: context,
         title: 'Perhatian',
@@ -75,16 +86,11 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    _store?.close();
     super.dispose();
   }
 
   @override
   void initState() {
-    openStore().then((Store store) {
-      _store = store;
-      userBox = _store?.box<User>();
-    });
     super.initState();
   }
 
@@ -146,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                       formDefault(
                         context: context,
                         onChange: (value) {
-                          password = value;
+                          password = Helper.encryptPassword(value);
                         },
                         hintText: 'Kata Sandi',
                         prefixIcon: SvgPicture.asset(
@@ -169,9 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                                   .copyWith(color: CustomColor.orange500),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  _store?.close();
-                                  Navigator.pushNamed(
-                                      context, 'forgot_password');
+                                  goForgotPassword();
                                 },
                             ),
                           ),
@@ -204,8 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                                     .copyWith(color: CustomColor.orange500),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    _store?.close();
-                                    Navigator.pushNamed(context, 'register');
+                                    goRegister();
                                   },
                               ),
                             ],
