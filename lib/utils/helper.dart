@@ -34,14 +34,18 @@ class Helper {
   }
 
   static String decryptPassword(String password) {
-    final key = Key.fromUtf8('UkXp2r5u8x/A?D(G+KbPeShVmYq3t6v9');
-    final iv = IV.fromLength(16);
+    if (password.isNotEmpty) {
+      final key = Key.fromUtf8('UkXp2r5u8x/A?D(G+KbPeShVmYq3t6v9');
+      final iv = IV.fromLength(16);
 
-    final encrypter = Encrypter(AES(key));
+      final encrypter = Encrypter(AES(key));
 
-    final encrypted = encrypter.encrypt(password, iv: iv);
-    final decrypted = encrypter.decrypt(encrypted, iv: iv);
-    return decrypted;
+      final encrypted = encrypter.encrypt(password, iv: iv);
+      final decrypted = encrypter.decrypt(encrypted, iv: iv);
+      return decrypted;
+    } else {
+      return '';
+    }
   }
 
   static String secureEmail(String email) {

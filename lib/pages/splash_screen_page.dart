@@ -32,7 +32,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         if (isSignIn)
           {Navigator.pushReplacementNamed(context, 'home')}
         else
-          {Navigator.pushReplacementNamed(context, 'login')}
+          {Navigator.pushReplacementNamed(context, 'onboarding')}
       },
     );
   }

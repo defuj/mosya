@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:isar/isar.dart';
-import 'package:mosya/pages/auth/login_page.dart';
 import 'package:mosya/pages/home/booking_page.dart';
 import 'package:mosya/pages/home/home_screen.dart';
 import 'package:mosya/pages/home/profile_screen.dart';
@@ -27,11 +26,9 @@ class _HomePageState extends State<HomePage> {
   void insertCar() {}
 
   void goToLoginPage() {
-    Navigator.pushReplacement(
+    Navigator.pushReplacementNamed(
       context,
-      MaterialPageRoute(
-        builder: (context) => LoginPage(isar: widget.isar),
-      ),
+      'onboarding',
     );
   }
 
@@ -85,109 +82,94 @@ class _HomePageState extends State<HomePage> {
         statusBarIconBrightness: Brightness.light,
       ),
       child: Scaffold(
-        appBar: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
-            child: Image.asset('assets/images/app_icon_title_h.png'),
-          ),
-          leadingWidth: 150,
-          actions: [
-            IconButton(
-              icon: SvgPicture.asset(
-                'assets/icons/svg/fi-rs-log-out.svg',
-                width: 24,
-                color: CustomColor.black500,
-              ),
-              onPressed: () {
-                logOut();
-              },
-            ),
-          ],
-          backgroundColor: Colors.white,
-          elevation: 0,
-          //   flexibleSpace: Column(
-          //     children: [
-          //       Container(
-          //         margin: const EdgeInsets.only(top: 40, left: 16, right: 16),
-          //         decoration: BoxDecoration(
-          //           color: Colors.white,
-          //           borderRadius: BorderRadius.circular(12.0),
-          //         ),
-          //         child: TextFormField(
-          //           decoration: InputDecoration(
-          //             contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-          //             hintText: "Cari mobil idamanmu",
-          //             hintStyle: const TextStyle(
-          //               color: CustomColor.black400,
-          //               fontFamily: 'OpenSans',
-          //               fontSize: 14,
-          //             ),
-          //             border: InputBorder.none,
-          //             prefixIcon: Align(
-          //               heightFactor: 1.0,
-          //               widthFactor: 1.0,
-          //               child: SvgPicture.asset(
-          //                 'assets/icons/svg/fi-br-search.svg',
-          //                 width: 16,
-          //                 color: CustomColor.black400,
-          //               ),
-          //             ),
-          //           ),
-          //           textInputAction: TextInputAction.search,
-          //           onChanged: (value) {},
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-        ),
-        backgroundColor: CustomColor.black50,
+        // appBar: AppBar(
+        //   leading: Padding(
+        //     padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+        //     child: Image.asset('assets/images/app_icon_title_h.png'),
+        //   ),
+        //   leadingWidth: 150,
+        //   actions: [
+        //     IconButton(
+        //       icon: SvgPicture.asset(
+        //         'assets/icons/svg/fi-rs-log-out.svg',
+        //         width: 24,
+        //         color: CustomColor.black500,
+        //       ),
+        //       onPressed: () {
+        //         logOut();
+        //       },
+        //     ),
+        //   ],
+        //   backgroundColor: Colors.white,
+        //   elevation: 0,
+        // ),
+        backgroundColor: CustomColor.backgroundPage,
         body: screenOpstions[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           elevation: 4,
           backgroundColor: Colors.white,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset(
-                'assets/icons/svg/fi-sr-home.svg',
-                width: 24,
-                height: 24,
-                color: CustomColor.orange500,
+              activeIcon: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: SvgPicture.asset(
+                  'assets/icons/svg/fi-sr-home.svg',
+                  width: 24,
+                  height: 24,
+                  color: CustomColor.orange500,
+                ),
               ),
-              icon: SvgPicture.asset(
-                'assets/icons/svg/fi-rr-home.svg',
-                width: 24,
-                height: 24,
-                color: CustomColor.black500,
+              icon: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: SvgPicture.asset(
+                  'assets/icons/svg/fi-rr-home.svg',
+                  width: 24,
+                  height: 24,
+                  color: CustomColor.black500,
+                ),
               ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset(
-                'assets/icons/svg/fi-sr-diploma.svg',
-                width: 24,
-                height: 24,
-                color: CustomColor.orange500,
+              activeIcon: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: SvgPicture.asset(
+                  'assets/icons/svg/fi-sr-diploma.svg',
+                  width: 24,
+                  height: 24,
+                  color: CustomColor.orange500,
+                ),
               ),
-              icon: SvgPicture.asset(
-                'assets/icons/svg/fi-rr-diploma.svg',
-                width: 24,
-                height: 24,
-                color: CustomColor.black500,
+              icon: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: SvgPicture.asset(
+                  'assets/icons/svg/fi-rr-diploma.svg',
+                  width: 24,
+                  height: 24,
+                  color: CustomColor.black500,
+                ),
               ),
               label: 'Booking',
             ),
             BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset(
-                'assets/icons/svg/fi-sr-user.svg',
-                width: 24,
-                height: 24,
-                color: CustomColor.orange500,
+              activeIcon: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: SvgPicture.asset(
+                  'assets/icons/svg/fi-sr-user.svg',
+                  width: 24,
+                  height: 24,
+                  color: CustomColor.orange500,
+                ),
               ),
-              icon: SvgPicture.asset(
-                'assets/icons/svg/fi-rr-user.svg',
-                width: 24,
-                height: 24,
-                color: CustomColor.black500,
+              icon: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: SvgPicture.asset(
+                  'assets/icons/svg/fi-rr-user.svg',
+                  width: 24,
+                  height: 24,
+                  color: CustomColor.black500,
+                ),
               ),
               label: 'Profile',
             ),
