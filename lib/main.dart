@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
@@ -6,6 +8,7 @@ import 'package:mosya/models/users.dart';
 import 'package:mosya/pages/auth/forgot_password_page.dart';
 import 'package:mosya/pages/auth/login_page.dart';
 import 'package:mosya/pages/auth/on_time_password_page.dart';
+import 'package:mosya/pages/auth/onboarding_page.dart';
 import 'package:mosya/pages/auth/register_page.dart';
 import 'package:mosya/pages/auth/reset_password_page.dart';
 import 'package:mosya/pages/home/home_page.dart';
@@ -13,12 +16,23 @@ import 'package:mosya/pages/splash_screen_page.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final isar = await Isar.open(
     [CarSchema, UserSchema],
     directory: (await getApplicationDocumentsDirectory()).path,
   );
+
+  HttpOverrides.global = MyHttpOverrides();
   runApp(Main(
     isar: isar,
   ));
@@ -56,7 +70,7 @@ class Main extends StatelessWidget {
           ),
           headline5: GoogleFonts.openSans(
             fontSize: 23,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.bold,
           ),
           headline6: GoogleFonts.openSans(
             fontSize: 19,
@@ -151,6 +165,12 @@ class Main extends StatelessWidget {
                 email: setting.arguments as String,
                 action: setting.arguments as String,
               ),
+              type: PageTransitionType.fade,
+              settings: setting,
+            );
+          case 'onboarding':
+            return PageTransition(
+              child: const OnBoardingPage(),
               type: PageTransitionType.fade,
               settings: setting,
             );
