@@ -28,6 +28,7 @@ dependencies:
     isar: ^3.0.0-dev.8
     isar_flutter_libs: ^3.0.0-dev.8
     path_provider: ^2.0.11
+    carousel_slider: ^4.1.1
     # objectbox: ^1.6.0
     # objectbox_flutter_libs: any
     # for ObjectBox Sync use this dependency instead:
