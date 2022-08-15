@@ -37,7 +37,7 @@ build/
 linux/
 macos/
 windows/
-web/
+# web/
 ios/
 
 # Web related

@@ -36,7 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
   void setData(User user) async {
     final pref = await SharedPreferences.getInstance();
     await pref.setBool('isSignIn', true);
-    await pref.setInt('userId', user.userId);
+    await pref.setInt('userId', user.userId!.toInt());
     await pref.setString('userName', '${user.userName}');
     await pref.setString('userEmail', '${user.userEmail}');
     await pref.setString('userPhone', '${user.userPhone}');
@@ -85,7 +85,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           ..userPhone = phone
                           ..userEmail = email
                           ..userPassword = password;
-                        widget.isar.writeTxn(() => widget.isar.users.put(user));
+                        widget.isar
+                            .writeTxn((txn) => widget.isar.users.put(user));
                         widget.isar.users
                             .filter()
                             .userEmailEqualTo(email)

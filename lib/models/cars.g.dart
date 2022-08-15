@@ -6,31 +6,30 @@ part of 'cars.dart';
 // IsarCollectionGenerator
 // **************************************************************************
 
-// coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, unused_local_variable
 
 extension GetCarCollection on Isar {
-  IsarCollection<Car> get cars => collection();
+  IsarCollection<Car> get cars => getCollection();
 }
 
 const CarSchema = CollectionSchema(
-  name: r'Car',
+  name: 'Car',
   schema:
-      r'{"name":"Car","idName":"carId","properties":[{"name":"carColor","type":"String"},{"name":"carCondition","type":"String"},{"name":"carDesc","type":"String"},{"name":"carDownPayment","type":"String"},{"name":"carFlatNumber","type":"String"},{"name":"carFuel","type":"String"},{"name":"carKilomoter","type":"Long"},{"name":"carMerk","type":"String"},{"name":"carModel","type":"String"},{"name":"carPrice","type":"Double"},{"name":"carUnitCode","type":"String"},{"name":"carYear","type":"String"}],"indexes":[],"links":[]}',
-  idName: r'carId',
+      '{"name":"Car","idName":"carId","properties":[{"name":"carColor","type":"String"},{"name":"carCondition","type":"String"},{"name":"carDesc","type":"String"},{"name":"carDownPayment","type":"String"},{"name":"carFlatNumber","type":"String"},{"name":"carFuel","type":"String"},{"name":"carKilomoter","type":"Long"},{"name":"carMerk","type":"String"},{"name":"carModel","type":"String"},{"name":"carPrice","type":"Double"},{"name":"carUnitCode","type":"String"},{"name":"carYear","type":"String"}],"indexes":[],"links":[]}',
+  idName: 'carId',
   propertyIds: {
-    r'carColor': 0,
-    r'carCondition': 1,
-    r'carDesc': 2,
-    r'carDownPayment': 3,
-    r'carFlatNumber': 4,
-    r'carFuel': 5,
-    r'carKilomoter': 6,
-    r'carMerk': 7,
-    r'carModel': 8,
-    r'carPrice': 9,
-    r'carUnitCode': 10,
-    r'carYear': 11
+    'carColor': 0,
+    'carCondition': 1,
+    'carDesc': 2,
+    'carDownPayment': 3,
+    'carFlatNumber': 4,
+    'carFuel': 5,
+    'carKilomoter': 6,
+    'carMerk': 7,
+    'carModel': 8,
+    'carPrice': 9,
+    'carUnitCode': 10,
+    'carYear': 11
   },
   listProperties: {},
   indexIds: {},
@@ -47,7 +46,7 @@ const CarSchema = CollectionSchema(
   serializeWeb: _carSerializeWeb,
   deserializeWeb: _carDeserializeWeb,
   deserializePropWeb: _carDeserializePropWeb,
-  version: 4,
+  version: 3,
 );
 
 int? _carGetId(Car object) {
@@ -62,104 +61,95 @@ void _carSetId(Car object, int id) {
   object.carId = id;
 }
 
-List<IsarLinkBase<dynamic>> _carGetLinks(Car object) {
+List<IsarLinkBase> _carGetLinks(Car object) {
   return [];
 }
 
-void _carSerializeNative(IsarCollection<Car> collection, IsarCObject cObj,
+void _carSerializeNative(IsarCollection<Car> collection, IsarRawObject rawObj,
     Car object, int staticSize, List<int> offsets, AdapterAlloc alloc) {
-  IsarUint8List? carColor$Bytes;
-  final carColor$Value = object.carColor;
-  if (carColor$Value != null) {
-    carColor$Bytes = IsarBinaryWriter.utf8Encoder.convert(carColor$Value);
+  var dynamicSize = 0;
+  final value0 = object.carColor;
+  IsarUint8List? _carColor;
+  if (value0 != null) {
+    _carColor = IsarBinaryWriter.utf8Encoder.convert(value0);
   }
-  IsarUint8List? carCondition$Bytes;
-  final carCondition$Value = object.carCondition;
-  if (carCondition$Value != null) {
-    carCondition$Bytes =
-        IsarBinaryWriter.utf8Encoder.convert(carCondition$Value);
+  dynamicSize += (_carColor?.length ?? 0) as int;
+  final value1 = object.carCondition;
+  IsarUint8List? _carCondition;
+  if (value1 != null) {
+    _carCondition = IsarBinaryWriter.utf8Encoder.convert(value1);
   }
-  IsarUint8List? carDesc$Bytes;
-  final carDesc$Value = object.carDesc;
-  if (carDesc$Value != null) {
-    carDesc$Bytes = IsarBinaryWriter.utf8Encoder.convert(carDesc$Value);
+  dynamicSize += (_carCondition?.length ?? 0) as int;
+  final value2 = object.carDesc;
+  IsarUint8List? _carDesc;
+  if (value2 != null) {
+    _carDesc = IsarBinaryWriter.utf8Encoder.convert(value2);
   }
-  IsarUint8List? carDownPayment$Bytes;
-  final carDownPayment$Value = object.carDownPayment;
-  if (carDownPayment$Value != null) {
-    carDownPayment$Bytes =
-        IsarBinaryWriter.utf8Encoder.convert(carDownPayment$Value);
+  dynamicSize += (_carDesc?.length ?? 0) as int;
+  final value3 = object.carDownPayment;
+  IsarUint8List? _carDownPayment;
+  if (value3 != null) {
+    _carDownPayment = IsarBinaryWriter.utf8Encoder.convert(value3);
   }
-  IsarUint8List? carFlatNumber$Bytes;
-  final carFlatNumber$Value = object.carFlatNumber;
-  if (carFlatNumber$Value != null) {
-    carFlatNumber$Bytes =
-        IsarBinaryWriter.utf8Encoder.convert(carFlatNumber$Value);
+  dynamicSize += (_carDownPayment?.length ?? 0) as int;
+  final value4 = object.carFlatNumber;
+  IsarUint8List? _carFlatNumber;
+  if (value4 != null) {
+    _carFlatNumber = IsarBinaryWriter.utf8Encoder.convert(value4);
   }
-  IsarUint8List? carFuel$Bytes;
-  final carFuel$Value = object.carFuel;
-  if (carFuel$Value != null) {
-    carFuel$Bytes = IsarBinaryWriter.utf8Encoder.convert(carFuel$Value);
+  dynamicSize += (_carFlatNumber?.length ?? 0) as int;
+  final value5 = object.carFuel;
+  IsarUint8List? _carFuel;
+  if (value5 != null) {
+    _carFuel = IsarBinaryWriter.utf8Encoder.convert(value5);
   }
-  IsarUint8List? carMerk$Bytes;
-  final carMerk$Value = object.carMerk;
-  if (carMerk$Value != null) {
-    carMerk$Bytes = IsarBinaryWriter.utf8Encoder.convert(carMerk$Value);
+  dynamicSize += (_carFuel?.length ?? 0) as int;
+  final value6 = object.carKilomoter;
+  final _carKilomoter = value6;
+  final value7 = object.carMerk;
+  IsarUint8List? _carMerk;
+  if (value7 != null) {
+    _carMerk = IsarBinaryWriter.utf8Encoder.convert(value7);
   }
-  IsarUint8List? carModel$Bytes;
-  final carModel$Value = object.carModel;
-  if (carModel$Value != null) {
-    carModel$Bytes = IsarBinaryWriter.utf8Encoder.convert(carModel$Value);
+  dynamicSize += (_carMerk?.length ?? 0) as int;
+  final value8 = object.carModel;
+  IsarUint8List? _carModel;
+  if (value8 != null) {
+    _carModel = IsarBinaryWriter.utf8Encoder.convert(value8);
   }
-  IsarUint8List? carUnitCode$Bytes;
-  final carUnitCode$Value = object.carUnitCode;
-  if (carUnitCode$Value != null) {
-    carUnitCode$Bytes = IsarBinaryWriter.utf8Encoder.convert(carUnitCode$Value);
+  dynamicSize += (_carModel?.length ?? 0) as int;
+  final value9 = object.carPrice;
+  final _carPrice = value9;
+  final value10 = object.carUnitCode;
+  IsarUint8List? _carUnitCode;
+  if (value10 != null) {
+    _carUnitCode = IsarBinaryWriter.utf8Encoder.convert(value10);
   }
-  IsarUint8List? carYear$Bytes;
-  final carYear$Value = object.carYear;
-  if (carYear$Value != null) {
-    carYear$Bytes = IsarBinaryWriter.utf8Encoder.convert(carYear$Value);
+  dynamicSize += (_carUnitCode?.length ?? 0) as int;
+  final value11 = object.carYear;
+  IsarUint8List? _carYear;
+  if (value11 != null) {
+    _carYear = IsarBinaryWriter.utf8Encoder.convert(value11);
   }
-  final size = (staticSize +
-      3 +
-      (carColor$Bytes?.length ?? 0) +
-      3 +
-      (carCondition$Bytes?.length ?? 0) +
-      3 +
-      (carDesc$Bytes?.length ?? 0) +
-      3 +
-      (carDownPayment$Bytes?.length ?? 0) +
-      3 +
-      (carFlatNumber$Bytes?.length ?? 0) +
-      3 +
-      (carFuel$Bytes?.length ?? 0) +
-      3 +
-      (carMerk$Bytes?.length ?? 0) +
-      3 +
-      (carModel$Bytes?.length ?? 0) +
-      3 +
-      (carUnitCode$Bytes?.length ?? 0) +
-      3 +
-      (carYear$Bytes?.length ?? 0)) as int;
-  cObj.buffer = alloc(size);
-  cObj.buffer_length = size;
+  dynamicSize += (_carYear?.length ?? 0) as int;
+  final size = staticSize + dynamicSize;
 
-  final buffer = IsarNative.bufAsBytes(cObj.buffer, size);
+  rawObj.buffer = alloc(size);
+  rawObj.buffer_length = size;
+  final buffer = IsarNative.bufAsBytes(rawObj.buffer, size);
   final writer = IsarBinaryWriter(buffer, staticSize);
-  writer.writeHeader();
-  writer.writeByteList(offsets[0], carColor$Bytes);
-  writer.writeByteList(offsets[1], carCondition$Bytes);
-  writer.writeByteList(offsets[2], carDesc$Bytes);
-  writer.writeByteList(offsets[3], carDownPayment$Bytes);
-  writer.writeByteList(offsets[4], carFlatNumber$Bytes);
-  writer.writeByteList(offsets[5], carFuel$Bytes);
-  writer.writeLong(offsets[6], object.carKilomoter);
-  writer.writeByteList(offsets[7], carMerk$Bytes);
-  writer.writeByteList(offsets[8], carModel$Bytes);
-  writer.writeDouble(offsets[9], object.carPrice);
-  writer.writeByteList(offsets[10], carUnitCode$Bytes);
-  writer.writeByteList(offsets[11], carYear$Bytes);
+  writer.writeBytes(offsets[0], _carColor);
+  writer.writeBytes(offsets[1], _carCondition);
+  writer.writeBytes(offsets[2], _carDesc);
+  writer.writeBytes(offsets[3], _carDownPayment);
+  writer.writeBytes(offsets[4], _carFlatNumber);
+  writer.writeBytes(offsets[5], _carFuel);
+  writer.writeLong(offsets[6], _carKilomoter);
+  writer.writeBytes(offsets[7], _carMerk);
+  writer.writeBytes(offsets[8], _carModel);
+  writer.writeDouble(offsets[9], _carPrice);
+  writer.writeBytes(offsets[10], _carUnitCode);
+  writer.writeBytes(offsets[11], _carYear);
 }
 
 Car _carDeserializeNative(IsarCollection<Car> collection, int id,
@@ -211,141 +201,129 @@ P _carDeserializePropNative<P>(
     case 11:
       return (reader.readStringOrNull(offset)) as P;
     default:
-      throw IsarError('Illegal propertyIndex');
+      throw 'Illegal propertyIndex';
   }
 }
 
-Object _carSerializeWeb(IsarCollection<Car> collection, Car object) {
+dynamic _carSerializeWeb(IsarCollection<Car> collection, Car object) {
   final jsObj = IsarNative.newJsObject();
-  IsarNative.jsObjectSet(jsObj, r'carColor', object.carColor);
-  IsarNative.jsObjectSet(jsObj, r'carCondition', object.carCondition);
-  IsarNative.jsObjectSet(jsObj, r'carDesc', object.carDesc);
-  IsarNative.jsObjectSet(jsObj, r'carDownPayment', object.carDownPayment);
-  IsarNative.jsObjectSet(jsObj, r'carFlatNumber', object.carFlatNumber);
-  IsarNative.jsObjectSet(jsObj, r'carFuel', object.carFuel);
-  IsarNative.jsObjectSet(jsObj, r'carId', object.carId);
-  IsarNative.jsObjectSet(jsObj, r'carKilomoter', object.carKilomoter);
-  IsarNative.jsObjectSet(jsObj, r'carMerk', object.carMerk);
-  IsarNative.jsObjectSet(jsObj, r'carModel', object.carModel);
-  IsarNative.jsObjectSet(jsObj, r'carPrice', object.carPrice);
-  IsarNative.jsObjectSet(jsObj, r'carUnitCode', object.carUnitCode);
-  IsarNative.jsObjectSet(jsObj, r'carYear', object.carYear);
+  IsarNative.jsObjectSet(jsObj, 'carColor', object.carColor);
+  IsarNative.jsObjectSet(jsObj, 'carCondition', object.carCondition);
+  IsarNative.jsObjectSet(jsObj, 'carDesc', object.carDesc);
+  IsarNative.jsObjectSet(jsObj, 'carDownPayment', object.carDownPayment);
+  IsarNative.jsObjectSet(jsObj, 'carFlatNumber', object.carFlatNumber);
+  IsarNative.jsObjectSet(jsObj, 'carFuel', object.carFuel);
+  IsarNative.jsObjectSet(jsObj, 'carId', object.carId);
+  IsarNative.jsObjectSet(jsObj, 'carKilomoter', object.carKilomoter);
+  IsarNative.jsObjectSet(jsObj, 'carMerk', object.carMerk);
+  IsarNative.jsObjectSet(jsObj, 'carModel', object.carModel);
+  IsarNative.jsObjectSet(jsObj, 'carPrice', object.carPrice);
+  IsarNative.jsObjectSet(jsObj, 'carUnitCode', object.carUnitCode);
+  IsarNative.jsObjectSet(jsObj, 'carYear', object.carYear);
   return jsObj;
 }
 
-Car _carDeserializeWeb(IsarCollection<Car> collection, Object jsObj) {
+Car _carDeserializeWeb(IsarCollection<Car> collection, dynamic jsObj) {
   final object = Car();
-  object.carColor = IsarNative.jsObjectGet(jsObj, r'carColor');
-  object.carCondition = IsarNative.jsObjectGet(jsObj, r'carCondition');
-  object.carDesc = IsarNative.jsObjectGet(jsObj, r'carDesc');
-  object.carDownPayment = IsarNative.jsObjectGet(jsObj, r'carDownPayment');
-  object.carFlatNumber = IsarNative.jsObjectGet(jsObj, r'carFlatNumber');
-  object.carFuel = IsarNative.jsObjectGet(jsObj, r'carFuel');
-  object.carId = IsarNative.jsObjectGet(jsObj, r'carId');
-  object.carKilomoter = IsarNative.jsObjectGet(jsObj, r'carKilomoter') ??
-      (double.negativeInfinity as int);
-  object.carMerk = IsarNative.jsObjectGet(jsObj, r'carMerk');
-  object.carModel = IsarNative.jsObjectGet(jsObj, r'carModel');
+  object.carColor = IsarNative.jsObjectGet(jsObj, 'carColor');
+  object.carCondition = IsarNative.jsObjectGet(jsObj, 'carCondition');
+  object.carDesc = IsarNative.jsObjectGet(jsObj, 'carDesc');
+  object.carDownPayment = IsarNative.jsObjectGet(jsObj, 'carDownPayment');
+  object.carFlatNumber = IsarNative.jsObjectGet(jsObj, 'carFlatNumber');
+  object.carFuel = IsarNative.jsObjectGet(jsObj, 'carFuel');
+  object.carId = IsarNative.jsObjectGet(jsObj, 'carId');
+  object.carKilomoter =
+      IsarNative.jsObjectGet(jsObj, 'carKilomoter') ?? double.negativeInfinity;
+  object.carMerk = IsarNative.jsObjectGet(jsObj, 'carMerk');
+  object.carModel = IsarNative.jsObjectGet(jsObj, 'carModel');
   object.carPrice =
-      IsarNative.jsObjectGet(jsObj, r'carPrice') ?? double.negativeInfinity;
-  object.carUnitCode = IsarNative.jsObjectGet(jsObj, r'carUnitCode');
-  object.carYear = IsarNative.jsObjectGet(jsObj, r'carYear');
+      IsarNative.jsObjectGet(jsObj, 'carPrice') ?? double.negativeInfinity;
+  object.carUnitCode = IsarNative.jsObjectGet(jsObj, 'carUnitCode');
+  object.carYear = IsarNative.jsObjectGet(jsObj, 'carYear');
   return object;
 }
 
 P _carDeserializePropWeb<P>(Object jsObj, String propertyName) {
   switch (propertyName) {
-    case r'carColor':
-      return (IsarNative.jsObjectGet(jsObj, r'carColor')) as P;
-    case r'carCondition':
-      return (IsarNative.jsObjectGet(jsObj, r'carCondition')) as P;
-    case r'carDesc':
-      return (IsarNative.jsObjectGet(jsObj, r'carDesc')) as P;
-    case r'carDownPayment':
-      return (IsarNative.jsObjectGet(jsObj, r'carDownPayment')) as P;
-    case r'carFlatNumber':
-      return (IsarNative.jsObjectGet(jsObj, r'carFlatNumber')) as P;
-    case r'carFuel':
-      return (IsarNative.jsObjectGet(jsObj, r'carFuel')) as P;
-    case r'carId':
-      return (IsarNative.jsObjectGet(jsObj, r'carId')) as P;
-    case r'carKilomoter':
-      return (IsarNative.jsObjectGet(jsObj, r'carKilomoter') ??
-          (double.negativeInfinity as int)) as P;
-    case r'carMerk':
-      return (IsarNative.jsObjectGet(jsObj, r'carMerk')) as P;
-    case r'carModel':
-      return (IsarNative.jsObjectGet(jsObj, r'carModel')) as P;
-    case r'carPrice':
-      return (IsarNative.jsObjectGet(jsObj, r'carPrice') ??
+    case 'carColor':
+      return (IsarNative.jsObjectGet(jsObj, 'carColor')) as P;
+    case 'carCondition':
+      return (IsarNative.jsObjectGet(jsObj, 'carCondition')) as P;
+    case 'carDesc':
+      return (IsarNative.jsObjectGet(jsObj, 'carDesc')) as P;
+    case 'carDownPayment':
+      return (IsarNative.jsObjectGet(jsObj, 'carDownPayment')) as P;
+    case 'carFlatNumber':
+      return (IsarNative.jsObjectGet(jsObj, 'carFlatNumber')) as P;
+    case 'carFuel':
+      return (IsarNative.jsObjectGet(jsObj, 'carFuel')) as P;
+    case 'carId':
+      return (IsarNative.jsObjectGet(jsObj, 'carId')) as P;
+    case 'carKilomoter':
+      return (IsarNative.jsObjectGet(jsObj, 'carKilomoter') ??
           double.negativeInfinity) as P;
-    case r'carUnitCode':
-      return (IsarNative.jsObjectGet(jsObj, r'carUnitCode')) as P;
-    case r'carYear':
-      return (IsarNative.jsObjectGet(jsObj, r'carYear')) as P;
+    case 'carMerk':
+      return (IsarNative.jsObjectGet(jsObj, 'carMerk')) as P;
+    case 'carModel':
+      return (IsarNative.jsObjectGet(jsObj, 'carModel')) as P;
+    case 'carPrice':
+      return (IsarNative.jsObjectGet(jsObj, 'carPrice') ??
+          double.negativeInfinity) as P;
+    case 'carUnitCode':
+      return (IsarNative.jsObjectGet(jsObj, 'carUnitCode')) as P;
+    case 'carYear':
+      return (IsarNative.jsObjectGet(jsObj, 'carYear')) as P;
     default:
-      throw IsarError('Illegal propertyName');
+      throw 'Illegal propertyName';
   }
 }
 
-void _carAttachLinks(IsarCollection<dynamic> col, int id, Car object) {}
+void _carAttachLinks(IsarCollection col, int id, Car object) {}
 
 extension CarQueryWhereSort on QueryBuilder<Car, Car, QWhere> {
   QueryBuilder<Car, Car, QAfterWhere> anyCarId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(const IdWhereClause.any());
-    });
+    return addWhereClauseInternal(const IdWhereClause.any());
   }
 }
 
 extension CarQueryWhere on QueryBuilder<Car, Car, QWhereClause> {
   QueryBuilder<Car, Car, QAfterWhereClause> carIdEqualTo(int carId) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IdWhereClause.between(
-        lower: carId,
-        upper: carId,
-      ));
-    });
+    return addWhereClauseInternal(IdWhereClause.between(
+      lower: carId,
+      includeLower: true,
+      upper: carId,
+      includeUpper: true,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterWhereClause> carIdNotEqualTo(int carId) {
-    return QueryBuilder.apply(this, (query) {
-      if (query.whereSort == Sort.asc) {
-        return query
-            .addWhereClause(
-              IdWhereClause.lessThan(upper: carId, includeUpper: false),
-            )
-            .addWhereClause(
-              IdWhereClause.greaterThan(lower: carId, includeLower: false),
-            );
-      } else {
-        return query
-            .addWhereClause(
-              IdWhereClause.greaterThan(lower: carId, includeLower: false),
-            )
-            .addWhereClause(
-              IdWhereClause.lessThan(upper: carId, includeUpper: false),
-            );
-      }
-    });
+    if (whereSortInternal == Sort.asc) {
+      return addWhereClauseInternal(
+        IdWhereClause.lessThan(upper: carId, includeUpper: false),
+      ).addWhereClauseInternal(
+        IdWhereClause.greaterThan(lower: carId, includeLower: false),
+      );
+    } else {
+      return addWhereClauseInternal(
+        IdWhereClause.greaterThan(lower: carId, includeLower: false),
+      ).addWhereClauseInternal(
+        IdWhereClause.lessThan(upper: carId, includeUpper: false),
+      );
+    }
   }
 
   QueryBuilder<Car, Car, QAfterWhereClause> carIdGreaterThan(int carId,
       {bool include = false}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(
-        IdWhereClause.greaterThan(lower: carId, includeLower: include),
-      );
-    });
+    return addWhereClauseInternal(
+      IdWhereClause.greaterThan(lower: carId, includeLower: include),
+    );
   }
 
   QueryBuilder<Car, Car, QAfterWhereClause> carIdLessThan(int carId,
       {bool include = false}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(
-        IdWhereClause.lessThan(upper: carId, includeUpper: include),
-      );
-    });
+    return addWhereClauseInternal(
+      IdWhereClause.lessThan(upper: carId, includeUpper: include),
+    );
   }
 
   QueryBuilder<Car, Car, QAfterWhereClause> carIdBetween(
@@ -354,37 +332,34 @@ extension CarQueryWhere on QueryBuilder<Car, Car, QWhereClause> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IdWhereClause.between(
-        lower: lowerCarId,
-        includeLower: includeLower,
-        upper: upperCarId,
-        includeUpper: includeUpper,
-      ));
-    });
+    return addWhereClauseInternal(IdWhereClause.between(
+      lower: lowerCarId,
+      includeLower: includeLower,
+      upper: upperCarId,
+      includeUpper: includeUpper,
+    ));
   }
 }
 
 extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carColor',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carColor',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carColor',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carColor',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorGreaterThan(
@@ -392,14 +367,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carColor',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carColor',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorLessThan(
@@ -407,14 +381,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carColor',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carColor',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorBetween(
@@ -424,85 +397,78 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carColor',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carColor',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carColor',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carColor',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carColor',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carColor',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorContains(String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carColor',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carColor',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carColorMatches(String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carColor',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carColor',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carCondition',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carCondition',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carCondition',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carCondition',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionGreaterThan(
@@ -510,14 +476,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carCondition',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carCondition',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionLessThan(
@@ -525,14 +490,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carCondition',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carCondition',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionBetween(
@@ -542,87 +506,80 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carCondition',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carCondition',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carCondition',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carCondition',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carCondition',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carCondition',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionContains(
       String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carCondition',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carCondition',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carConditionMatches(
       String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carCondition',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carCondition',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carDesc',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carDesc',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carDesc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carDesc',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescGreaterThan(
@@ -630,14 +587,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carDesc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carDesc',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescLessThan(
@@ -645,14 +601,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carDesc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carDesc',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescBetween(
@@ -662,85 +617,78 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carDesc',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carDesc',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carDesc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carDesc',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carDesc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carDesc',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescContains(String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carDesc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carDesc',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDescMatches(String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carDesc',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carDesc',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carDownPayment',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carDownPayment',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carDownPayment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carDownPayment',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentGreaterThan(
@@ -748,14 +696,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carDownPayment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carDownPayment',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentLessThan(
@@ -763,14 +710,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carDownPayment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carDownPayment',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentBetween(
@@ -780,87 +726,80 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carDownPayment',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carDownPayment',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carDownPayment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carDownPayment',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carDownPayment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carDownPayment',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentContains(
       String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carDownPayment',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carDownPayment',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carDownPaymentMatches(
       String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carDownPayment',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carDownPayment',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carFlatNumber',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carFlatNumber',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carFlatNumber',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carFlatNumber',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberGreaterThan(
@@ -868,14 +807,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carFlatNumber',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carFlatNumber',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberLessThan(
@@ -883,14 +821,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carFlatNumber',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carFlatNumber',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberBetween(
@@ -900,87 +837,80 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carFlatNumber',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carFlatNumber',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carFlatNumber',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carFlatNumber',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carFlatNumber',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carFlatNumber',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberContains(
       String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carFlatNumber',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carFlatNumber',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFlatNumberMatches(
       String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carFlatNumber',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carFlatNumber',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carFuel',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carFuel',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carFuel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carFuel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelGreaterThan(
@@ -988,14 +918,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carFuel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carFuel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelLessThan(
@@ -1003,14 +932,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carFuel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carFuel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelBetween(
@@ -1020,99 +948,98 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carFuel',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carFuel',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carFuel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carFuel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carFuel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carFuel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelContains(String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carFuel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carFuel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carFuelMatches(String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carFuel',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carFuel',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<Car, Car, QAfterFilterCondition> carIdIsNull() {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carId',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carIdEqualTo(int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carId',
-        value: value,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carId',
+      value: value,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carIdGreaterThan(
     int value, {
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carId',
-        value: value,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carId',
+      value: value,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carIdLessThan(
     int value, {
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carId',
-        value: value,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carId',
+      value: value,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carIdBetween(
@@ -1121,50 +1048,45 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carId',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carKilomoterEqualTo(int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carKilomoter',
-        value: value,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carKilomoter',
+      value: value,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carKilomoterGreaterThan(
     int value, {
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carKilomoter',
-        value: value,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carKilomoter',
+      value: value,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carKilomoterLessThan(
     int value, {
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carKilomoter',
-        value: value,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carKilomoter',
+      value: value,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carKilomoterBetween(
@@ -1173,36 +1095,33 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carKilomoter',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carKilomoter',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carMerk',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carMerk',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carMerk',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carMerk',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkGreaterThan(
@@ -1210,14 +1129,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carMerk',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carMerk',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkLessThan(
@@ -1225,14 +1143,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carMerk',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carMerk',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkBetween(
@@ -1242,85 +1159,78 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carMerk',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carMerk',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carMerk',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carMerk',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carMerk',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carMerk',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkContains(String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carMerk',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carMerk',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carMerkMatches(String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carMerk',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carMerk',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carModel',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carModel',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carModel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carModel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelGreaterThan(
@@ -1328,14 +1238,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carModel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carModel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelLessThan(
@@ -1343,14 +1252,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carModel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carModel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelBetween(
@@ -1360,117 +1268,108 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carModel',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carModel',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carModel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carModel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carModel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carModel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelContains(String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carModel',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carModel',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carModelMatches(String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carModel',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carModel',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carPriceGreaterThan(
       double value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'carPrice',
-        value: value,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: false,
+      property: 'carPrice',
+      value: value,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carPriceLessThan(double value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        property: r'carPrice',
-        value: value,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: false,
+      property: 'carPrice',
+      value: value,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carPriceBetween(
       double lower, double upper) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carPrice',
-        lower: lower,
-        includeLower: false,
-        upper: upper,
-        includeUpper: false,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carPrice',
+      lower: lower,
+      includeLower: false,
+      upper: upper,
+      includeUpper: false,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carUnitCode',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carUnitCode',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carUnitCode',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carUnitCode',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeGreaterThan(
@@ -1478,14 +1377,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carUnitCode',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carUnitCode',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeLessThan(
@@ -1493,14 +1391,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carUnitCode',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carUnitCode',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeBetween(
@@ -1510,87 +1407,80 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carUnitCode',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carUnitCode',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carUnitCode',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carUnitCode',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carUnitCode',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carUnitCode',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeContains(
       String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carUnitCode',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carUnitCode',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carUnitCodeMatches(
       String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carUnitCode',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carUnitCode',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'carYear',
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'carYear',
+      value: null,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'carYear',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'carYear',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearGreaterThan(
@@ -1598,14 +1488,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'carYear',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'carYear',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearLessThan(
@@ -1613,14 +1502,13 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool caseSensitive = true,
     bool include = false,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'carYear',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'carYear',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearBetween(
@@ -1630,64 +1518,58 @@ extension CarQueryFilter on QueryBuilder<Car, Car, QFilterCondition> {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'carYear',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'carYear',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'carYear',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'carYear',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'carYear',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'carYear',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearContains(String value,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'carYear',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'carYear',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
   }
 
   QueryBuilder<Car, Car, QAfterFilterCondition> carYearMatches(String pattern,
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'carYear',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'carYear',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
   }
 }
 
@@ -1695,470 +1577,331 @@ extension CarQueryLinks on QueryBuilder<Car, Car, QFilterCondition> {}
 
 extension CarQueryWhereSortBy on QueryBuilder<Car, Car, QSortBy> {
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarColor() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carColor', Sort.asc);
-    });
+    return addSortByInternal('carColor', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarColorDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carColor', Sort.desc);
-    });
+    return addSortByInternal('carColor', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarCondition() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carCondition', Sort.asc);
-    });
+    return addSortByInternal('carCondition', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarConditionDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carCondition', Sort.desc);
-    });
+    return addSortByInternal('carCondition', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carDesc', Sort.asc);
-    });
+    return addSortByInternal('carDesc', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarDescDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carDesc', Sort.desc);
-    });
+    return addSortByInternal('carDesc', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarDownPayment() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carDownPayment', Sort.asc);
-    });
+    return addSortByInternal('carDownPayment', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarDownPaymentDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carDownPayment', Sort.desc);
-    });
+    return addSortByInternal('carDownPayment', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarFlatNumber() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carFlatNumber', Sort.asc);
-    });
+    return addSortByInternal('carFlatNumber', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarFlatNumberDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carFlatNumber', Sort.desc);
-    });
+    return addSortByInternal('carFlatNumber', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarFuel() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carFuel', Sort.asc);
-    });
+    return addSortByInternal('carFuel', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarFuelDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carFuel', Sort.desc);
-    });
+    return addSortByInternal('carFuel', Sort.desc);
+  }
+
+  QueryBuilder<Car, Car, QAfterSortBy> sortByCarId() {
+    return addSortByInternal('carId', Sort.asc);
+  }
+
+  QueryBuilder<Car, Car, QAfterSortBy> sortByCarIdDesc() {
+    return addSortByInternal('carId', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarKilomoter() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carKilomoter', Sort.asc);
-    });
+    return addSortByInternal('carKilomoter', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarKilomoterDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carKilomoter', Sort.desc);
-    });
+    return addSortByInternal('carKilomoter', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarMerk() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carMerk', Sort.asc);
-    });
+    return addSortByInternal('carMerk', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarMerkDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carMerk', Sort.desc);
-    });
+    return addSortByInternal('carMerk', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarModel() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carModel', Sort.asc);
-    });
+    return addSortByInternal('carModel', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarModelDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carModel', Sort.desc);
-    });
+    return addSortByInternal('carModel', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarPrice() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carPrice', Sort.asc);
-    });
+    return addSortByInternal('carPrice', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarPriceDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carPrice', Sort.desc);
-    });
+    return addSortByInternal('carPrice', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarUnitCode() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carUnitCode', Sort.asc);
-    });
+    return addSortByInternal('carUnitCode', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarUnitCodeDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carUnitCode', Sort.desc);
-    });
+    return addSortByInternal('carUnitCode', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarYear() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carYear', Sort.asc);
-    });
+    return addSortByInternal('carYear', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> sortByCarYearDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carYear', Sort.desc);
-    });
+    return addSortByInternal('carYear', Sort.desc);
   }
 }
 
 extension CarQueryWhereSortThenBy on QueryBuilder<Car, Car, QSortThenBy> {
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarColor() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carColor', Sort.asc);
-    });
+    return addSortByInternal('carColor', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarColorDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carColor', Sort.desc);
-    });
+    return addSortByInternal('carColor', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarCondition() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carCondition', Sort.asc);
-    });
+    return addSortByInternal('carCondition', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarConditionDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carCondition', Sort.desc);
-    });
+    return addSortByInternal('carCondition', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carDesc', Sort.asc);
-    });
+    return addSortByInternal('carDesc', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarDescDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carDesc', Sort.desc);
-    });
+    return addSortByInternal('carDesc', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarDownPayment() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carDownPayment', Sort.asc);
-    });
+    return addSortByInternal('carDownPayment', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarDownPaymentDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carDownPayment', Sort.desc);
-    });
+    return addSortByInternal('carDownPayment', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarFlatNumber() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carFlatNumber', Sort.asc);
-    });
+    return addSortByInternal('carFlatNumber', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarFlatNumberDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carFlatNumber', Sort.desc);
-    });
+    return addSortByInternal('carFlatNumber', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarFuel() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carFuel', Sort.asc);
-    });
+    return addSortByInternal('carFuel', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarFuelDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carFuel', Sort.desc);
-    });
+    return addSortByInternal('carFuel', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carId', Sort.asc);
-    });
+    return addSortByInternal('carId', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carId', Sort.desc);
-    });
+    return addSortByInternal('carId', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarKilomoter() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carKilomoter', Sort.asc);
-    });
+    return addSortByInternal('carKilomoter', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarKilomoterDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carKilomoter', Sort.desc);
-    });
+    return addSortByInternal('carKilomoter', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarMerk() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carMerk', Sort.asc);
-    });
+    return addSortByInternal('carMerk', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarMerkDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carMerk', Sort.desc);
-    });
+    return addSortByInternal('carMerk', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarModel() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carModel', Sort.asc);
-    });
+    return addSortByInternal('carModel', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarModelDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carModel', Sort.desc);
-    });
+    return addSortByInternal('carModel', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarPrice() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carPrice', Sort.asc);
-    });
+    return addSortByInternal('carPrice', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarPriceDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carPrice', Sort.desc);
-    });
+    return addSortByInternal('carPrice', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarUnitCode() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carUnitCode', Sort.asc);
-    });
+    return addSortByInternal('carUnitCode', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarUnitCodeDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carUnitCode', Sort.desc);
-    });
+    return addSortByInternal('carUnitCode', Sort.desc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarYear() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carYear', Sort.asc);
-    });
+    return addSortByInternal('carYear', Sort.asc);
   }
 
   QueryBuilder<Car, Car, QAfterSortBy> thenByCarYearDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'carYear', Sort.desc);
-    });
+    return addSortByInternal('carYear', Sort.desc);
   }
 }
 
 extension CarQueryWhereDistinct on QueryBuilder<Car, Car, QDistinct> {
   QueryBuilder<Car, Car, QDistinct> distinctByCarColor(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carColor', caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carColor', caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarCondition(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carCondition', caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carCondition', caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarDesc(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carDesc', caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carDesc', caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarDownPayment(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carDownPayment',
-          caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carDownPayment',
+        caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarFlatNumber(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carFlatNumber',
-          caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carFlatNumber', caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarFuel(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carFuel', caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carFuel', caseSensitive: caseSensitive);
+  }
+
+  QueryBuilder<Car, Car, QDistinct> distinctByCarId() {
+    return addDistinctByInternal('carId');
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarKilomoter() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carKilomoter');
-    });
+    return addDistinctByInternal('carKilomoter');
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarMerk(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carMerk', caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carMerk', caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarModel(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carModel', caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carModel', caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarPrice() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carPrice');
-    });
+    return addDistinctByInternal('carPrice');
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarUnitCode(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carUnitCode', caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carUnitCode', caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Car, Car, QDistinct> distinctByCarYear(
       {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'carYear', caseSensitive: caseSensitive);
-    });
+    return addDistinctByInternal('carYear', caseSensitive: caseSensitive);
   }
 }
 
 extension CarQueryProperty on QueryBuilder<Car, Car, QQueryProperty> {
-  QueryBuilder<Car, int, QQueryOperations> carIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carId');
-    });
-  }
-
   QueryBuilder<Car, String?, QQueryOperations> carColorProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carColor');
-    });
+    return addPropertyNameInternal('carColor');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carConditionProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carCondition');
-    });
+    return addPropertyNameInternal('carCondition');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carDescProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carDesc');
-    });
+    return addPropertyNameInternal('carDesc');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carDownPaymentProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carDownPayment');
-    });
+    return addPropertyNameInternal('carDownPayment');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carFlatNumberProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carFlatNumber');
-    });
+    return addPropertyNameInternal('carFlatNumber');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carFuelProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carFuel');
-    });
+    return addPropertyNameInternal('carFuel');
+  }
+
+  QueryBuilder<Car, int?, QQueryOperations> carIdProperty() {
+    return addPropertyNameInternal('carId');
   }
 
   QueryBuilder<Car, int, QQueryOperations> carKilomoterProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carKilomoter');
-    });
+    return addPropertyNameInternal('carKilomoter');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carMerkProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carMerk');
-    });
+    return addPropertyNameInternal('carMerk');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carModelProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carModel');
-    });
+    return addPropertyNameInternal('carModel');
   }
 
   QueryBuilder<Car, double, QQueryOperations> carPriceProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carPrice');
-    });
+    return addPropertyNameInternal('carPrice');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carUnitCodeProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carUnitCode');
-    });
+    return addPropertyNameInternal('carUnitCode');
   }
 
   QueryBuilder<Car, String?, QQueryOperations> carYearProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'carYear');
-    });
+    return addPropertyNameInternal('carYear');
   }
 }

@@ -3,7 +3,8 @@ part 'cars.g.dart';
 
 @Collection()
 class Car {
-  Id carId = Isar.autoIncrement;
+  @Id()
+  int? carId;
   String? carMerk;
   String? carModel;
   String? carColor;

@@ -3,7 +3,8 @@ part 'users.g.dart';
 
 @Collection()
 class User {
-  Id userId = Isar.autoIncrement;
+  @Id()
+  int? userId;
   String? userName;
   String? userEmail;
   String? userPhone;

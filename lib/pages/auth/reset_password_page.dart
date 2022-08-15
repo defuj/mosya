@@ -40,8 +40,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             if (result.isNotEmpty) {
               final user = result[0];
               if (user.userPassword != password) {
-                widget.isar.writeTxn(
-                    () => widget.isar.users.put(user..userPassword = password));
+                widget.isar.writeTxn((txn) =>
+                    widget.isar.users.put(user..userPassword = password));
                 progress.dismiss(
                     seconds: 2,
                     onFinished: () {

@@ -16,7 +16,7 @@ import 'package:mosya/models/users.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     late Isar isar;
-    Isar.open([UserSchema, CarSchema]).then((value) => isar = value);
+    Isar.open(schemas: [UserSchema, CarSchema]).then((value) => isar = value);
     // Build our app and trigger a frame.
     await tester.pumpWidget(Main(
       isar: isar,

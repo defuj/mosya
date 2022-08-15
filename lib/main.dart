@@ -28,8 +28,8 @@ class MyHttpOverrides extends HttpOverrides {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final isar = await Isar.open(
-    [CarSchema, UserSchema],
-    directory: (await getApplicationDocumentsDirectory()).path,
+    schemas: [CarSchema, UserSchema],
+    // directory: (await getApplicationDocumentsDirectory()).path,
   );
 
   HttpOverrides.global = MyHttpOverrides();

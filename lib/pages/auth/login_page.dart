@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   void saveData(User user) async {
     final pref = await SharedPreferences.getInstance();
     await pref.setBool('isSignIn', true);
-    await pref.setInt('userId', user.userId);
+    await pref.setInt('userId', user.userId!.toInt());
     await pref.setString('userName', '${user.userName}');
     await pref.setString('userEmail', '${user.userEmail}');
     await pref.setString('userPhone', '${user.userPhone}');

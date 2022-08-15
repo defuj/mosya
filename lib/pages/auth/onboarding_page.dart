@@ -28,7 +28,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           children: [
             Lottie.asset(
               'assets/animations/car_2.json',
-              width: double.infinity,
+              width: 300,
               repeat: true,
             ),
             SizedBox(
