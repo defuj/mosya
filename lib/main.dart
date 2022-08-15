@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
 import 'package:mosya/models/cars.dart';
@@ -14,7 +15,6 @@ import 'package:mosya/pages/auth/reset_password_page.dart';
 import 'package:mosya/pages/home/home_page.dart';
 import 'package:mosya/pages/splash_screen_page.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -33,6 +33,7 @@ void main() async {
   );
 
   HttpOverrides.global = MyHttpOverrides();
+  setUrlStrategy(PathUrlStrategy());
   runApp(Main(
     isar: isar,
   ));
